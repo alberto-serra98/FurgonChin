@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_1763019_furgonch_veicolo</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Popolo categoria marca e modello</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+ 
+  // Crea o trova CATEGORIA
+
+  var cat = new GlideRecord('x_1763019_furgonch_categoria');
+
+  cat.addQuery('nome_categoria', current.categoria_temp);
+
+  cat.query();
+
+  if (!cat.next()) {
+
+    cat.initialize();
+
+    cat.nome_categoria = current.categoria_temp;
+
+    cat.insert();
+
+  }
+
+  current.categoria = cat.sys_id;
+ 
+  // Crea o trova MARCA legata alla categoria
+
+  var marca = new GlideRecord('x_1763019_furgonch_marca');
+
+  marca.addQuery('nome_marca', current.marca_temp);
+
+  marca.addQuery('categoria', cat.sys_id); // << controlla anche la categoria
+
+  marca.query();
+
+  if (!marca.next()) {
+
+    marca.initialize();
+
+    marca.nome_marca = current.marca_temp;
+
+    marca.categoria = cat.sys_id;
+
+    marca.insert();
+
+  }
+
+  current.marca = marca.sys_id;
+ 
+  // Controlla se esiste già un MODELLO con stesso nome, marca e categoria
+
+  var modelloCheck = new GlideRecord('x_1763019_furgonch_modello');
+
+  modelloCheck.addQuery('nome_modello', current.modello_temp);
+
+  modelloCheck.addQuery('marca', marca.sys_id);
+
+  modelloCheck.query();
+
+  if (modelloCheck.next()) {
+
+    gs.addErrorMessage('Il modello "' + current.modello_temp + '" esiste già per questa marca e categoria.');
+
+    current.setAbortAction(true);
+
+    return;
+
+  }
+ 
+  // Crea MODELLO
+
+  var modello = new GlideRecord('x_1763019_furgonch_modello');
+
+  modello.initialize();
+
+  modello.nome_modello = current.modello_temp;
+
+  modello.marca = marca.sys_id;
+
+  modello.insert();
+
+  current.modello = modello.sys_id;
+ 
+})(current, previous);
+
+ ]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-15 10:25:23</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>1536ec95c3e12210e9a97205e401316f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Popolo categoria marca e modello</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_update_name>sys_script_1536ec95c3e12210e9a97205e401316f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-15 10:25:23</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=1536ec95c3e12210e9a97205e401316f"/>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>1536ec95c3e12210e9a97205e401316f</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-15 10:25:23</sys_created_on>
+        <sys_id>38a664d5c3e12210e9a97205e4013123</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-15 10:25:23</sys_updated_on>
+        <table>sys_script</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
