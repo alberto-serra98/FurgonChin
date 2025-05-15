@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_1763019_furgonch_utente</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Aggiungi operatore al gruppo Operatori</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+ 
+   
+    if (current.ruolo_utente == 'operatore') {
+ 
+     
+        var gruppo = new GlideRecord('sys_user_group');
+        gruppo.addQuery('name', 'Operatori');
+        gruppo.query();
+ 
+        if (gruppo.next()) {
+         
+            var ug = new GlideRecord('sys_user_grmember');
+            ug.initialize();
+            ug.user = current.sys_id;
+            ug.group = gruppo.sys_id;
+            ug.insert();
+        }
+    }
+ 
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 13:15:30</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>76c3cc4dc3a52210e9a97205e40131a5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Aggiungi operatore al gruppo Operatori</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_update_name>sys_script_76c3cc4dc3a52210e9a97205e40131a5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-14 13:15:30</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=76c3cc4dc3a52210e9a97205e40131a5"/>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>76c3cc4dc3a52210e9a97205e40131a5</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 13:15:30</sys_created_on>
+        <sys_id>72f380cdc3a52210e9a97205e40131c4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-14 13:15:30</sys_updated_on>
+        <table>sys_script</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

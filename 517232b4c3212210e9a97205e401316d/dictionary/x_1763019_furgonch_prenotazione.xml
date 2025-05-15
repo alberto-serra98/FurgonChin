@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="f3930ffcc3612210e9a97205e40131a2" label="Prenotazione" max_length="40" name="x_1763019_furgonch_prenotazione" type="collection">
+        <element default="Get Next Padded Number" label="ID prenotazione" max_length="40" name="id_prenotazione" type="string"/>
+        <element label="Assicurata" max_length="40" name="assicurata" type="boolean"/>
+        <element label="Credito rimanente" max_length="20" name="credito_rimanente" type="currency"/>
+        <element label="Categoria" max_length="32" name="categoria" reference="x_1763019_furgonch_categoria" type="reference"/>
+        <element label="Veicolo" max_length="32" name="veicolo" reference="x_1763019_furgonch_veicolo" type="reference"/>
+        <element label="Annullare prenotazione" max_length="40" name="annullare_prenotazione" type="boolean"/>
+        <element label="Credito rimborsato" max_length="20" name="credito_rimborsato" type="currency"/>
+        <element label="Marca" max_length="32" name="marca" reference="x_1763019_furgonch_marca" reference_qual="javascript:&quot;categoria =&quot; + current.categoria" type="reference" use_reference_qualifier="advanced"/>
+        <element label="Data restituzione" max_length="40" name="data_restituzione" type="glide_date_time"/>
+        <element label="Costo totale" max_length="20" name="costo_totale" type="currency"/>
+        <element attributes="javascript:&quot;marca=&quot;+current.marca" label="Modello" max_length="32" name="modello" reference="x_1763019_furgonch_modello" reference_qual="javascript:&quot;marca=&quot;+current.marca" type="reference" use_reference_qualifier="advanced"/>
+        <element label="Cliente" max_length="32" name="cliente" reference="x_1763019_furgonch_utente" type="reference"/>
+        <element choice="1" default="attiva" label="Stato prenotazione" max_length="40" name="stato_prenotazione" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Annuallta" value="annullata"/>
+                <element inactive_on_update="false" label="Attiva" value="attiva"/>
+            </choice>
+        </element>
+        <element label="Data prenotazione" max_length="40" name="data_prenotazione" type="glide_date_time"/>
+        <index name="index">
+            <element name="categoria"/>
+        </index>
+        <index name="index2">
+            <element name="cliente"/>
+        </index>
+        <index name="index3">
+            <element name="marca"/>
+        </index>
+        <index name="index4">
+            <element name="modello"/>
+        </index>
+        <index name="index5">
+            <element name="veicolo"/>
+        </index>
+    </element>
+</database>

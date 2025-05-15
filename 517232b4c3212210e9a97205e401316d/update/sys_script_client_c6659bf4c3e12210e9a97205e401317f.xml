@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description>Autocompilazione Form Data restituzione</description>
+        <field>data_prenotazione</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Popolazione Data fine Onchange</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading) {
+    if (isLoading || newValue == '') {
+        return;
+    }
+ 
+    var dataInizio = new Date(newValue);
+
+    dataInizio.setDate(dataInizio.getDate() + 30);
+ 
+    // Formatta la data come yyyy-MM-dd
+    var isoDate = dataInizio.toISOString().slice(0, 19).replace('T', ' ');
+ 
+    g_form.setValue('data_restituzione', isoDate);
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 09:53:28</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>c6659bf4c3e12210e9a97205e401317f</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Popolazione Data fine Onchange</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_update_name>sys_script_client_c6659bf4c3e12210e9a97205e401317f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-14 09:55:43</sys_updated_on>
+        <table>x_1763019_furgonch_prenotazione</table>
+        <type>onChange</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

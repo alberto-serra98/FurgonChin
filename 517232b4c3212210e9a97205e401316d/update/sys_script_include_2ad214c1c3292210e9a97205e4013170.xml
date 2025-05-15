@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_1763019_furgonch.GetCostoVeicolo</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>GetCostoVeicolo</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var GetCostoVeicolo = Class.create();
+GetCostoVeicolo.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+    getCosto: function() {
+        gs.info('sono entrato nello Script GetCostoVeicolo')
+    var modelloId = this.getParameter('sysparm_modello');
+    var gr = new GlideRecord('x_1763019_furgonch_veicolo');
+ 
+    gs.info('Sono entrato anche qui GetCostoVeicolo ');
+ 
+    gr.addQuery('modello', modelloId);
+    gr.addQuery('disponibile', 'Disponibile'); // solo se vuoi prendere quelli disponibili
+    gr.query();
+ 
+    gs.info('Query superata GetCostoVeicolo');
+ 
+    if (gr.next()) {
+      return gr.getValue('costo_giornaliero');
+    }
+    return 0;
+ },
+ 
+    type: 'GetCostoVeicolo'
+});
+ ]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 14:21:48</sys_created_on>
+        <sys_id>2ad214c1c3292210e9a97205e4013170</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>GetCostoVeicolo</sys_name>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_update_name>sys_script_include_2ad214c1c3292210e9a97205e4013170</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-14 14:21:48</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>2ad214c1c3292210e9a97205e4013170</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 14:21:47</sys_created_on>
+        <sys_id>86231481c3292210e9a97205e40131db</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-14 14:21:47</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
