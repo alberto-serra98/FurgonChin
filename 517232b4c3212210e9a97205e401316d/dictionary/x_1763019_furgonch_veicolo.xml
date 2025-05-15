@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="fa8cba74c3612210e9a97205e4013174" label="Veicolo" max_length="40" name="x_1763019_furgonch_veicolo" type="collection">
+        <element choice="1" default="disponibile" label="Disponibile" max_length="40" name="disponibile" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Disponibile" value="disponibile"/>
+                <element inactive_on_update="false" label="Non Disponibile" value="non_disponibile"/>
+            </choice>
+        </element>
+        <element label="Marca temp" max_length="40" name="marca_temp" type="string"/>
+        <element label="Modello temp" max_length="40" name="modello_temp" type="string"/>
+        <element label="Categoria temp" max_length="40" name="categoria_temp" type="string"/>
+        <element label="Marca" max_length="32" name="marca" reference="x_1763019_furgonch_marca" reference_qual="javascript:&quot;categoria =&quot; + current.categoria" type="reference" use_reference_qualifier="advanced"/>
+        <element display="true" label="Modello" max_length="32" name="modello" reference="x_1763019_furgonch_modello" reference_qual="javascript:&quot;marca=&quot;+current.marca" type="reference" use_reference_qualifier="advanced"/>
+        <element label="Categoria" max_length="40" name="categoria" reference="x_1763019_furgonch_categoria" type="reference"/>
+        <element label="Costo giornaliero" max_length="20" name="costo_giornaliero" type="currency"/>
+        <index name="index">
+            <element name="marca"/>
+        </index>
+        <index name="index2">
+            <element name="modello"/>
+        </index>
+    </element>
+</database>

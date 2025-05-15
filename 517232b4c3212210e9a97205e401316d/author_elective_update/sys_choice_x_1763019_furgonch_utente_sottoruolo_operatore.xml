@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="sottoruolo_operatore" table="x_1763019_furgonch_utente" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>sottoruolo_operatore</element>
+            <name>x_1763019_furgonch_utente</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-05-14 08:59:54</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>sottoruolo_operatore</sys_name>
+            <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+            <sys_update_name>sys_choice_x_1763019_furgonch_utente_sottoruolo_operatore</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-05-14 08:59:54</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>sottoruolo_operatore</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Logistico</label>
+            <language>en</language>
+            <name>x_1763019_furgonch_utente</name>
+            <sequence/>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-05-14 08:59:54</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-05-14 09:38:30</sys_updated_on>
+            <value>logistico</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>sottoruolo_operatore</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Amministrativo</label>
+            <language>en</language>
+            <name>x_1763019_furgonch_utente</name>
+            <sequence>0</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-05-14 08:59:59</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-05-14 09:38:36</sys_updated_on>
+            <value>amministrativo</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="b1c84f74c3a12210e9a97205e401316a" extends="sys_user" label="Utente" max_length="40" name="x_1763019_furgonch_utente" type="collection">
+        <element choice="1" label="Ruolo utente" max_length="40" name="ruolo_utente" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Cliente" sequence="0" value="cliente"/>
+                <element inactive_on_update="false" label="Operatore" value="operatore"/>
+            </choice>
+        </element>
+        <element default="1500" label="Credito" max_length="20" name="credito" type="currency"/>
+        <element choice="1" label="Sottoruolo operatore" max_length="40" name="sottoruolo_operatore" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Amministrativo" sequence="0" value="amministrativo"/>
+                <element inactive_on_update="false" label="Logistico" value="logistico"/>
+            </choice>
+        </element>
+    </element>
+</database>

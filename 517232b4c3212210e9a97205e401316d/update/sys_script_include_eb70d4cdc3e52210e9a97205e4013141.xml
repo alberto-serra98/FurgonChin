@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_1763019_furgonch.VehicleLookupUtils</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>VehicleLookupUtils</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var VehicleLookupUtils = Class.create();
+VehicleLookupUtils.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+ 
+    getMarcheByCategory: function() {
+        gs.info('sono qui');
+        var categorySysId = this.getParameter('sysparm_category');
+       
+       
+        var marche = [];
+ 
+        var grMarca = new GlideRecord('x_1763019_furgonch_marca');
+        grMarca.addQuery('categoria', categorySysId);
+        grMarca.query();
+ 
+        while (grMarca.next()) {
+            var id = grMarca.getUniqueValue();
+            var name = grMarca.getValue('nome_marca');
+            gs.info('Marca trovata - ID: ' + id + ', Nome: ' + name);
+ 
+            marche.push({
+                id: id,
+                name: name
+            });
+        }
+ 
+        var result = JSON.stringify(marche);
+        gs.info('Risultato finale getMarcheByCategory: ' + result);
+        return result;
+    },
+ 
+    getModelliByMarca: function() {
+        var marcaSysId = this.getParameter('sysparm_marca');
+        gs.info('getModelliByMarca - marcaSysId: ' + marcaSysId);
+ 
+        var modelli = [];
+ 
+        var grModello = new GlideRecord('x_1763019_furgonch_modello');
+        grModello.addQuery('marca', marcaSysId);
+        grModello.query();
+ 
+        while (grModello.next()) {
+            var id = grModello.getUniqueValue();
+            var name = grModello.getValue('nome_modello');
+            gs.info('Modello trovato - ID: ' + id + ', Nome: ' + name);
+ 
+            modelli.push({
+                id: id,
+                name: name
+            });
+        }
+ 
+        var result = JSON.stringify(modelli);
+        gs.info('Risultato finale getModelliByMarca: ' + result);
+        return result;
+    },
+ 
+    type: 'VehicleLookupUtils'
+});
+ ]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 14:12:20</sys_created_on>
+        <sys_id>eb70d4cdc3e52210e9a97205e4013141</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>VehicleLookupUtils</sys_name>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_update_name>sys_script_include_eb70d4cdc3e52210e9a97205e4013141</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-14 14:12:20</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>eb70d4cdc3e52210e9a97205e4013141</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 14:12:19</sys_created_on>
+        <sys_id>1bf0d80dc3e52210e9a97205e4013170</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-14 14:12:19</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

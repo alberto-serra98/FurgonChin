@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="bbc23a38c3212210e9a97205e4013117" label="Categoria" max_length="40" name="x_1763019_furgonch_categoria" type="collection">
+        <element display="true" label="Nome categoria" max_length="40" name="nome_categoria" type="string"/>
+    </element>
+</database>

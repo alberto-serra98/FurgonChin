@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_1763019_furgonch_prenotazione</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Rimborsa credito prenotazione assicurata</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous) {
+ 
+    gs.info('[Rimborso] Business Rule attivata.');
+ 
+    // Controlla se è stato richiesto l'annullamento
+    if (!current.annullare_prenotazione || current.annullare_prenotazione == previous.annullare_prenotazione) {
+        gs.info('[Rimborso] Prenotazione non annullata o già annullata.');
+        return;
+    }
+ 
+    var rimborso = 0;
+ 
+    // Se è assicurata, procedi con il rimborso
+    if (current.assicurata) {
+        var cliente = new GlideRecord('x_1763019_furgonch_utente');
+        if (cliente.get(current.cliente)) {
+ 
+            rimborso = parseFloat(current.costo_totale);
+ 
+            cliente.credito_disponibile = parseFloat(cliente.credito_disponibile) + rimborso;
+            cliente.update();
+ 
+            current.credito_rimborsato = rimborso;
+ 
+            gs.info('[Rimborso] Rimborso effettuato di €' + rimborso + ' per utente ' + cliente.name);
+        } else {
+            gs.warn('[Rimborso] Utente non trovato.');
+        }
+    } else {
+        gs.info('[Rimborso] Prenotazione NON assicurata → niente rimborso.');
+    }
+ 
+    // Azzera il costo e cambia lo stato → sempre
+    current.costo_totale = 0;
+    current.stato_prenotazione = 'annullata';
+ 
+    gs.info('[Rimborso] Stato aggiornato a annullata e costo azzerato.');
+ 
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 10:21:21</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>07cbd7fcc3e12210e9a97205e40131e9</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Rimborsa credito prenotazione assicurata</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_update_name>sys_script_07cbd7fcc3e12210e9a97205e40131e9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-14 13:03:47</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=07cbd7fcc3e12210e9a97205e40131e9"/>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>07cbd7fcc3e12210e9a97205e40131e9</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 10:21:21</sys_created_on>
+        <sys_id>f71cd3fcc3e12210e9a97205e40131e2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-14 10:21:21</sys_updated_on>
+        <table>sys_script</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
