@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="f3930ffcc3612210e9a97205e40131a2" label="Prenotazione" max_length="40" name="x_1763019_furgonch_prenotazione" type="collection">
-        <element default="Get Next Padded Number" label="ID prenotazione" max_length="40" name="id_prenotazione" type="string"/>
+        <element default="javascript:global.getNextObjNumberPadded();" label="ID prenotazione" max_length="40" name="id_prenotazione" type="string"/>
         <element label="Assicurata" max_length="40" name="assicurata" type="boolean"/>
         <element label="Credito rimanente" max_length="20" name="credito_rimanente" type="currency"/>
         <element label="Categoria" max_length="32" name="categoria" reference="x_1763019_furgonch_categoria" type="reference"/>

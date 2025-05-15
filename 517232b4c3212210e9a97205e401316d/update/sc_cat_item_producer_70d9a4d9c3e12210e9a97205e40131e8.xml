@@ -74,7 +74,22 @@
         <sc_ic_item_staging/>
         <sc_ic_version/>
         <sc_template/>
-        <script><![CDATA[producer.portal_redirect = "furgonchin?id=homepage";]]></script>
+        <script><![CDATA[var pren = new GlideRecord('x_1763019_furgonch_prenotazione');
+pren.addQuery('id_prenotazione', current.id_prenotazione);
+pren.query();
+ 
+if (pren.next()) {
+    pren.setValue('stato_prenotazione', 'annullata');
+    pren.update();
+    producer.portal_redirect = 'furgonchin?id=homepage'; // opzionale
+    current.setAbortAction(true);
+    gs.addInfoMessage('Prenotazione annullata.');
+} else {
+    gs.addErrorMessage('Prenotazione non trovata.');
+    current.setAbortAction(true);
+}
+
+producer.portal_redirect = "furgonchin?id=homepage";]]></script>
         <short_description>Possibilità di annullare una prenotazione da parte di un utente</short_description>
         <show_variable_help_on_load>false</show_variable_help_on_load>
         <start_closed>false</start_closed>
@@ -83,14 +98,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-05-15 10:39:47</sys_created_on>
         <sys_id>70d9a4d9c3e12210e9a97205e40131e8</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>42</sys_mod_count>
         <sys_name>Annullamento prenotazione</sys_name>
         <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
         <sys_policy/>
         <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
         <sys_update_name>sc_cat_item_producer_70d9a4d9c3e12210e9a97205e40131e8</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-15 10:42:55</sys_updated_on>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2025-05-15 15:48:14</sys_updated_on>
         <table_name>x_1763019_furgonch_prenotazione</table_name>
         <taxonomy_topic/>
         <template/>
@@ -98,7 +113,7 @@
         <type>item</type>
         <use_sc_layout>true</use_sc_layout>
         <vendor/>
-        <version>4</version>
+        <version>42</version>
         <view/>
         <visible_bundle>true</visible_bundle>
         <visible_guide>true</visible_guide>

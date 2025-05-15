@@ -2,7 +2,7 @@
     <item_option_new action="INSERT_OR_UPDATE">
         <active>true</active>
         <attributes/>
-        <cat_item display_value="Prenotazione veicolo">50e70805c3e52210e9a97205e401318f</cat_item>
+        <cat_item display_value="Annullamento prenotazione">70d9a4d9c3e12210e9a97205e40131e8</cat_item>
         <category/>
         <choice_direction>down</choice_direction>
         <choice_field/>
@@ -22,7 +22,7 @@
         <dynamic_value_field/>
         <enable_also_request_for>false</enable_also_request_for>
         <example_text/>
-        <field>id_prenotazione</field>
+        <field/>
         <global>false</global>
         <help_tag>More information</help_tag>
         <help_text/>
@@ -39,17 +39,17 @@
         <macro/>
         <macroponent/>
         <mandatory>false</mandatory>
-        <map_to_field>true</map_to_field>
+        <map_to_field>false</map_to_field>
         <mask_use_confirmation>false</mask_use_confirmation>
         <mask_use_encryption>false</mask_use_encryption>
-        <name>id_prenotazione</name>
+        <name>credito_rimborsato</name>
         <not_available_conversation>false</not_available_conversation>
-        <order>10</order>
+        <order>70</order>
         <post_insert_script/>
         <price_if_checked>0</price_if_checked>
         <pricing_implications>false</pricing_implications>
         <published_ref/>
-        <question_text>ID prenotazione</question_text>
+        <question_text>Credito rimborsato</question_text>
         <read_only>true</read_only>
         <read_roles/>
         <read_script/>
@@ -77,16 +77,16 @@
         <summary_macro/>
         <sys_class_name>item_option_new</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2025-05-14 13:51:49</sys_created_on>
-        <sys_id>ccdb8849c3e52210e9a97205e40131ed</sys_id>
-        <sys_mod_count>4</sys_mod_count>
-        <sys_name>ID prenotazione</sys_name>
+        <sys_created_on>2025-05-15 12:41:43</sys_created_on>
+        <sys_id>b8c5811dc3652210e9a97205e401314b</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Credito rimborsato</sys_name>
         <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
         <sys_policy/>
         <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
-        <sys_update_name>item_option_new_ccdb8849c3e52210e9a97205e40131ed</sys_update_name>
+        <sys_update_name>item_option_new_b8c5811dc3652210e9a97205e401314b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-15 14:32:21</sys_updated_on>
+        <sys_updated_on>2025-05-15 14:06:33</sys_updated_on>
         <table/>
         <tooltip/>
         <topic_block/>
@@ -106,22 +106,22 @@
         <visible_summary>true</visible_summary>
         <write_roles/>
     </item_option_new>
-    <sys_translated_text action="delete_multiple" query="documentkey=ccdb8849c3e52210e9a97205e40131ed"/>
-    <fx_price action="delete_multiple" query="id=ccdb8849c3e52210e9a97205e40131ed"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=b8c5811dc3652210e9a97205e401314b"/>
+    <fx_price action="delete_multiple" query="id=b8c5811dc3652210e9a97205e401314b"/>
     <fx_price action="INSERT_OR_UPDATE">
         <amount>0</amount>
         <currency display_value="EUR">EUR</currency>
         <field>price_if_checked</field>
-        <id>ccdb8849c3e52210e9a97205e40131ed</id>
+        <id>b8c5811dc3652210e9a97205e401314b</id>
         <parent/>
         <reference_amount>0</reference_amount>
         <reference_currency display_value="USD">USD</reference_currency>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2025-05-14 13:51:49</sys_created_on>
-        <sys_id>034c0489c3e52210e9a97205e4013149</sys_id>
+        <sys_created_on>2025-05-15 12:41:43</sys_created_on>
+        <sys_id>7dd5c51dc3652210e9a97205e40131ae</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-14 13:51:49</sys_updated_on>
+        <sys_updated_on>2025-05-15 12:41:43</sys_updated_on>
         <table>item_option_new</table>
         <type>calculated</type>
     </fx_price>
@@ -129,16 +129,16 @@
         <amount>0</amount>
         <currency display_value="EUR">EUR</currency>
         <field>rec_price_if_checked</field>
-        <id>ccdb8849c3e52210e9a97205e40131ed</id>
+        <id>b8c5811dc3652210e9a97205e401314b</id>
         <parent/>
         <reference_amount>0</reference_amount>
         <reference_currency display_value="USD">USD</reference_currency>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2025-05-14 13:51:49</sys_created_on>
-        <sys_id>4f4cc849c3e52210e9a97205e401316f</sys_id>
+        <sys_created_on>2025-05-15 12:41:43</sys_created_on>
+        <sys_id>f1d5c51dc3652210e9a97205e40131ae</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-14 13:51:49</sys_updated_on>
+        <sys_updated_on>2025-05-15 12:41:43</sys_updated_on>
         <table>item_option_new</table>
         <type>calculated</type>
     </fx_price>
