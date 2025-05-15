@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_1763019_furgonch.PrenotazioneInfo</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>PrenotazioneInfo</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[ var PrenotazioneInfo = Class.create();
+PrenotazioneInfo.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+ 
+  getPrenotazioneDetails: function() {
+    var prenotazioneID = this.getParameter('sysparm_id');
+    gs.info('[PrenotazioneInfo] sysparm_id ricevuto: ' + prenotazioneID);
+ 
+    var pren = new GlideRecord('x_1763019_furgonch_prenotazione');
+   
+    pren.addQuery('id_prenotazione', prenotazioneID);
+    pren.query();
+ 
+    if (pren.next()) {
+      gs.info('[PrenotazioneInfo] Prenotazione trovata - sys_id: ' + pren.getUniqueValue());
+ 
+      var veicolo = pren.veicolo.getRefRecord();
+      gs.info('[PrenotazioneInfo] Veicolo trovato: ' + (veicolo.isValidRecord() ? veicolo.getDisplayValue() : 'Nessun veicolo'));
+ 
+      var rawAssicurata = pren.getValue('assicurata') + '';
+      var assicurata = (rawAssicurata === 'true' || rawAssicurata === '1');
+      var costo = pren.costo_totale;
+      gs.info('[PrenotazioneInfo] Assicurata: ' + assicurata + ', Costo: ' + costo);
+ 
+      var creditoRimborsato = 0;
+      if (assicurata == true || assicurata == 'true') {
+        creditoRimborsato = costo;
+      }
+      gs.info('[PrenotazioneInfo] Credito rimborsato calcolato: ' + creditoRimborsato);
+ 
+      var result = {
+        modello: pren.modello.toString(),
+        marca: pren.marca.toString(),
+        categoria: veicolo.categoria.toString(),
+        costo_totale: costo.toString(),
+        credito_rimborsato: creditoRimborsato.toString(),
+        assicurata: assicurata
+      };
+ 
+      gs.info('[PrenotazioneInfo] Dati JSON restituiti: ' + JSON.stringify(result));
+      return JSON.stringify(result);
+    }
+ 
+    gs.error('[PrenotazioneInfo] Nessuna prenotazione trovata con ID prenotazione = ' + prenotazioneID);
+    return JSON.stringify({ error: 'Prenotazione non trovata o ID non valido' });
+  },
+ 
+  type: 'PrenotazioneInfo'
+});
+ ]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-15 15:30:29</sys_created_on>
+        <sys_id>993ce999c3292210e9a97205e40131fb</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>PrenotazioneInfo</sys_name>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_update_name>sys_script_include_993ce999c3292210e9a97205e40131fb</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-15 15:50:27</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>993ce999c3292210e9a97205e40131fb</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-15 15:30:29</sys_created_on>
+        <sys_id>c67c21d9c3292210e9a97205e40131f8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-15 15:30:29</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
