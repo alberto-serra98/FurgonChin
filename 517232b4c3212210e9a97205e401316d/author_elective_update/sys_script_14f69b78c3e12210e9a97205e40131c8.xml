@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="DELETE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_1763019_furgonch_prenotazione</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="x_1763019_furgonch_prenotazione">null<item endquery="false" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Calcolo costo totale</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current) {
+    gs.info('[Prenotazione] Business Rule avviata.');
+ 
+    var veicolo = new GlideRecord('x_1763019_furgonch_veicolo');
+ 
+    if (current.veicolo.nil()) {
+        // Nuova prenotazione → cerca un veicolo disponibile
+        if (current.categoria.nil() || current.marca.nil() || current.modello.nil()) {
+            gs.warn('[Prenotazione] Categoria, Marca o Modello non sono stati compilati.');
+            return;
+        }
+ 
+        veicolo.addQuery('categoria', current.categoria);
+        veicolo.addQuery('marca', current.marca);
+        veicolo.addQuery('modello', current.modello);
+        veicolo.addQuery('disponibile', 'disponibile'); // attenzione: deve essere tutto minuscolo come definito nei valori choice
+        veicolo.query();
+ 
+        if (!veicolo.next()) {
+            gs.warn('[Prenotazione] Nessun veicolo disponibile trovato.');
+            return;
+        }
+ 
+        current.veicolo = veicolo.sys_id;
+        gs.info('[Prenotazione] Veicolo assegnato: ' + veicolo.getDisplayValue('modello'));
+    } else {
+        // Prenotazione esistente → usa il veicolo già associato
+        if (!veicolo.get(current.veicolo)) {
+            gs.error('[Prenotazione] ERRORE: Veicolo associato non trovato.');
+            return;
+        }
+        gs.info('[Prenotazione] Uso veicolo già associato: ' + veicolo.getDisplayValue('modello'));
+    }
+ 
+    // Calcolo durata prenotazione
+    var durataGiorni = 30;
+    if (!current.data_prenotazione.nil() && !current.data_restituzione.nil()) {
+        var inizio = new GlideDateTime(current.data_prenotazione);
+        var fine = new GlideDateTime(current.data_restituzione);
+ 
+        var durataMillis = fine.getNumericValue() - inizio.getNumericValue();
+        durataGiorni = Math.ceil(durataMillis / (1000 * 60 * 60 * 24));
+        if (durataGiorni <= 0) durataGiorni = 1;
+    }
+ 
+    var costoGiornaliero = parseFloat(veicolo.costo_giornaliero);
+    if (isNaN(costoGiornaliero)) {
+        gs.error('[Prenotazione] ERRORE: costo_giornaliero non valido.');
+        return;
+    }
+ 
+    var costoBase = costoGiornaliero * durataGiorni;
+    var assicurata = current.assicurata == true || current.assicurata == 'true';
+    var costoTotale = assicurata ? costoBase * 1.2 : costoBase;
+ 
+    current.costo_totale = Math.round(costoTotale * 100) / 100;
+ 
+    gs.info('[Prenotazione] Costo totale calcolato: ' + current.costo_totale);
+    gs.info('[Prenotazione] Business Rule completata.');
+ 
+})(current);
+ 
+ ]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 10:00:09</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>14f69b78c3e12210e9a97205e40131c8</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>Calcolo costo totale</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_update_name>sys_script_14f69b78c3e12210e9a97205e40131c8</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-16 10:14:12</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="DELETE" query="documentkey=14f69b78c3e12210e9a97205e40131c8"/>
+    <sys_es_latest_script action="DELETE">
+        <id>14f69b78c3e12210e9a97205e40131c8</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-14 10:00:08</sys_created_on>
+        <sys_id>d9471f38c3e12210e9a97205e40131e0</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-14 10:00:08</sys_updated_on>
+        <table>sys_script</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="FurgonChin">517232b4c3212210e9a97205e401316d</application>
+        <file_path/>
+        <instance_id>fa0b529d1b3a7154c84543f4bd4bcbb3</instance_id>
+        <instance_name>dev227010</instance_name>
+        <name>sys_script_14f69b78c3e12210e9a97205e40131c8</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_script"&gt;&lt;sys_script action="INSERT_OR_UPDATE"&gt;&lt;abort_action&gt;false&lt;/abort_action&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;action_delete&gt;false&lt;/action_delete&gt;&lt;action_insert&gt;true&lt;/action_insert&gt;&lt;action_query&gt;false&lt;/action_query&gt;&lt;action_update&gt;true&lt;/action_update&gt;&lt;active&gt;true&lt;/active&gt;&lt;add_message&gt;false&lt;/add_message&gt;&lt;advanced&gt;true&lt;/advanced&gt;&lt;change_fields&gt;false&lt;/change_fields&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;collection&gt;x_1763019_furgonch_prenotazione&lt;/collection&gt;&lt;condition/&gt;&lt;description/&gt;&lt;execute_function&gt;false&lt;/execute_function&gt;&lt;filter_condition table="x_1763019_furgonch_prenotazione"&gt;null&lt;item endquery="false" field="" goto="false" newquery="false" operator="=" or="false" value=""/&gt;&lt;/filter_condition&gt;&lt;is_rest&gt;false&lt;/is_rest&gt;&lt;message/&gt;&lt;name&gt;Calcolo costo totale&lt;/name&gt;&lt;order&gt;100&lt;/order&gt;&lt;priority&gt;100&lt;/priority&gt;&lt;rest_method/&gt;&lt;rest_method_text/&gt;&lt;rest_service/&gt;&lt;rest_service_text/&gt;&lt;rest_variables/&gt;&lt;role_conditions/&gt;&lt;script&gt;&lt;![CDATA[(function executeRule(current) {
+    gs.info('[Prenotazione] Business Rule avviata.');
+ 
+    var veicolo = new GlideRecord('x_1763019_furgonch_veicolo');
+ 
+    if (current.veicolo.nil()) {
+        // Nuova prenotazione → cerca un veicolo disponibile
+        if (current.categoria.nil() || current.marca.nil() || current.modello.nil()) {
+            gs.warn('[Prenotazione] Categoria, Marca o Modello non sono stati compilati.');
+            return;
+        }
+ 
+        veicolo.addQuery('categoria', current.categoria);
+        veicolo.addQuery('marca', current.marca);
+        veicolo.addQuery('modello', current.modello);
+        veicolo.addQuery('disponibile', 'disponibile'); // attenzione: deve essere tutto minuscolo come definito nei valori choice
+        veicolo.query();
+ 
+        if (!veicolo.next()) {
+            gs.warn('[Prenotazione] Nessun veicolo disponibile trovato.');
+            return;
+        }
+ 
+        current.veicolo = veicolo.sys_id;
+        gs.info('[Prenotazione] Veicolo assegnato: ' + veicolo.getDisplayValue('modello'));
+    } else {
+        // Prenotazione esistente → usa il veicolo già associato
+        if (!veicolo.get(current.veicolo)) {
+            gs.error('[Prenotazione] ERRORE: Veicolo associato non trovato.');
+            return;
+        }
+        gs.info('[Prenotazione] Uso veicolo già associato: ' + veicolo.getDisplayValue('modello'));
+    }
+ 
+    // Calcolo durata prenotazione
+    var durataGiorni = 30;
+    if (!current.data_prenotazione.nil() &amp;&amp; !current.data_restituzione.nil()) {
+        var inizio = new GlideDateTime(current.data_prenotazione);
+        var fine = new GlideDateTime(current.data_restituzione);
+ 
+        var durataMillis = fine.getNumericValue() - inizio.getNumericValue();
+        durataGiorni = Math.ceil(durataMillis / (1000 * 60 * 60 * 24));
+        if (durataGiorni &lt;= 0) durataGiorni = 1;
+    }
+ 
+    var costoGiornaliero = parseFloat(veicolo.costo_giornaliero);
+    if (isNaN(costoGiornaliero)) {
+        gs.error('[Prenotazione] ERRORE: costo_giornaliero non valido.');
+        return;
+    }
+ 
+    var costoBase = costoGiornaliero * durataGiorni;
+    var assicurata = current.assicurata == true || current.assicurata == 'true';
+    var costoTotale = assicurata ? costoBase * 1.2 : costoBase;
+ 
+    current.costo_totale = Math.round(costoTotale * 100) / 100;
+ 
+    gs.info('[Prenotazione] Costo totale calcolato: ' + current.costo_totale);
+    gs.info('[Prenotazione] Business Rule completata.');
+ 
+})(current);
+ 
+ ]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2025-05-14 10:00:09&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;14f69b78c3e12210e9a97205e40131c8&lt;/sys_id&gt;&lt;sys_mod_count&gt;7&lt;/sys_mod_count&gt;&lt;sys_name&gt;Calcolo costo totale&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="FurgonChin" source="x_1763019_furgonch"&gt;517232b4c3212210e9a97205e401316d&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="FurgonChin"&gt;517232b4c3212210e9a97205e401316d&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_14f69b78c3e12210e9a97205e40131c8&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-05-16 10:14:12&lt;/sys_updated_on&gt;&lt;template/&gt;&lt;when&gt;before&lt;/when&gt;&lt;/sys_script&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=14f69b78c3e12210e9a97205e40131c8"/&gt;&lt;sys_es_latest_script action="INSERT_OR_UPDATE"&gt;&lt;id&gt;14f69b78c3e12210e9a97205e40131c8&lt;/id&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2025-05-14 10:00:08&lt;/sys_created_on&gt;&lt;sys_id&gt;d9471f38c3e12210e9a97205e40131e0&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-05-14 10:00:08&lt;/sys_updated_on&gt;&lt;table&gt;sys_script&lt;/table&gt;&lt;use_es_latest&gt;true&lt;/use_es_latest&gt;&lt;/sys_es_latest_script&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-1690269767</payload_hash>
+        <record_name>Calcolo costo totale</record_name>
+        <reverted_from/>
+        <source>c07540d9c3212210e9a97205e4013105</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-16 10:14:12</sys_created_on>
+        <sys_id>b6ade1a1c3e12210e9a97205e40131e3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>196d89654e80000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-16 10:14:12</sys_updated_on>
+        <type>Business Rule</type>
+        <update_guid>7aade1a140e12210489d44db81253be2</update_guid>
+        <update_guid_history>7aade1a140e12210489d44db81253be2:-1690269767,0197656998a12210185f9a449ba6e43a:1446041489,c3f5e1699ea12210e965b228b030480c:2077995734,96f5eda586a122100a8f92722da1a5be:-1682881434,611d77b4a8a52210c8efc127fc5c568e:-574105547,9f9c33b434a522106226c7c7f260c7ad:-73844367,48b75bb8cce122109067994f20f5e786:-2016431273,19479778cde122104d4894f8c96b14e7:-1086522022</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-16 12:25:10</sys_created_on>
+        <sys_db_object display_value="" name="sys_script">sys_script</sys_db_object>
+        <sys_id>62626d0cc9c444c2aee78ea028eb7504</sys_id>
+        <sys_metadata>14f69b78c3e12210e9a97205e40131c8</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Calcolo costo totale</sys_name>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_parent display_value="Prenotazione">f3930ffcc3612210e9a97205e40131a2</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_scope_delete display_value="">2f4d918f06694368895a1130a721eb11</sys_scope_delete>
+        <sys_update_name>sys_script_14f69b78c3e12210e9a97205e40131c8</sys_update_name>
+        <sys_update_version display_value="sys_script_14f69b78c3e12210e9a97205e40131c8">b6ade1a1c3e12210e9a97205e40131e3</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-16 12:25:10</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

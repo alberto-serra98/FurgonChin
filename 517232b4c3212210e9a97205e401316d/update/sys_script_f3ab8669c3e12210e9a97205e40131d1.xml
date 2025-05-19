@@ -28,131 +28,93 @@
         <rest_variables/>
         <role_conditions/>
         <script><![CDATA[(function executeRule(current) {
-
     gs.info('[Prenotazione] Business Rule avviata.');
  
     var veicolo = new GlideRecord('x_1763019_furgonch_veicolo');
  
     if (current.veicolo.nil()) {
-
         // Nuova prenotazione → cerca un veicolo disponibile
-
         if (current.categoria.nil() || current.marca.nil() || current.modello.nil()) {
-
             gs.warn('[Prenotazione] Categoria, Marca o Modello non sono stati compilati.');
-
             return;
-
         }
  
         veicolo.addQuery('categoria', current.categoria);
-
         veicolo.addQuery('marca', current.marca);
-
         veicolo.addQuery('modello', current.modello);
-
         veicolo.addQuery('disponibile', 'disponibile'); // attenzione: deve essere tutto minuscolo come definito nei valori choice
-
         veicolo.query();
  
         if (!veicolo.next()) {
-
             gs.warn('[Prenotazione] Nessun veicolo disponibile trovato.');
-
             return;
-
         }
  
         current.veicolo = veicolo.sys_id;
-
         gs.info('[Prenotazione] Veicolo assegnato: ' + veicolo.getDisplayValue('modello'));
-
     } else {
-
         // Prenotazione esistente → usa il veicolo già associato
-
         if (!veicolo.get(current.veicolo)) {
-
             gs.error('[Prenotazione] ERRORE: Veicolo associato non trovato.');
-
             return;
-
         }
-
         gs.info('[Prenotazione] Uso veicolo già associato: ' + veicolo.getDisplayValue('modello'));
-
     }
  
     // Calcolo durata prenotazione
-
     var durataGiorni = 30;
-
     if (!current.data_prenotazione.nil() && !current.data_restituzione.nil()) {
-
         var inizio = new GlideDateTime(current.data_prenotazione);
-
         var fine = new GlideDateTime(current.data_restituzione);
  
         var durataMillis = fine.getNumericValue() - inizio.getNumericValue();
-
         durataGiorni = Math.ceil(durataMillis / (1000 * 60 * 60 * 24));
-
         if (durataGiorni <= 0) durataGiorni = 1;
-
     }
  
     var costoGiornaliero = parseFloat(veicolo.costo_giornaliero);
-
     if (isNaN(costoGiornaliero)) {
-
         gs.error('[Prenotazione] ERRORE: costo_giornaliero non valido.');
-
         return;
-
     }
  
     var costoBase = costoGiornaliero * durataGiorni;
-
     var assicurata = current.assicurata == true || current.assicurata == 'true';
-
     var costoTotale = assicurata ? costoBase * 1.2 : costoBase;
  
     current.costo_totale = Math.round(costoTotale * 100) / 100;
  
     gs.info('[Prenotazione] Costo totale calcolato: ' + current.costo_totale);
-
     gs.info('[Prenotazione] Business Rule completata.');
  
-})(current);
-
- ]]></script>
+})(current);]]></script>
         <sys_class_name>sys_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2025-05-14 10:00:09</sys_created_on>
+        <sys_created_on>2025-05-16 12:26:41</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>14f69b78c3e12210e9a97205e40131c8</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_id>f3ab8669c3e12210e9a97205e40131d1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
         <sys_name>Calcolo costo totale</sys_name>
         <sys_overrides/>
         <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
         <sys_policy/>
         <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
-        <sys_update_name>sys_script_14f69b78c3e12210e9a97205e40131c8</sys_update_name>
+        <sys_update_name>sys_script_f3ab8669c3e12210e9a97205e40131d1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-14 12:45:22</sys_updated_on>
+        <sys_updated_on>2025-05-16 12:26:41</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>
-    <sys_translated_text action="delete_multiple" query="documentkey=14f69b78c3e12210e9a97205e40131c8"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=f3ab8669c3e12210e9a97205e40131d1"/>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
-        <id>14f69b78c3e12210e9a97205e40131c8</id>
+        <id>f3ab8669c3e12210e9a97205e40131d1</id>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2025-05-14 10:00:08</sys_created_on>
-        <sys_id>d9471f38c3e12210e9a97205e40131e0</sys_id>
+        <sys_created_on>2025-05-16 12:26:41</sys_created_on>
+        <sys_id>d7fb02edc3252210e9a97205e40131ea</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-14 10:00:08</sys_updated_on>
+        <sys_updated_on>2025-05-16 12:26:41</sys_updated_on>
         <table>sys_script</table>
         <use_es_latest>true</use_es_latest>
     </sys_es_latest_script>
