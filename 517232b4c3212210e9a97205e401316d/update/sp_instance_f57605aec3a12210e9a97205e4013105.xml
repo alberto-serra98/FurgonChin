@@ -10,20 +10,20 @@
         <roles/>
         <short_description/>
         <size>md</size>
-        <sp_column display_value="1">ef4708c1c3e52210e9a97205e40131df</sp_column>
+        <sp_column display_value="1">597689aec3a12210e9a97205e401317b</sp_column>
         <sp_widget display_value="Quick Links">dae53627530030101865ddeeff7b12be</sp_widget>
         <sys_class_name>sp_instance</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2025-05-14 13:30:01</sys_created_on>
-        <sys_id>eb4708c1c3e52210e9a97205e40131e2</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_created_on>2025-05-19 09:56:51</sys_created_on>
+        <sys_id>f57605aec3a12210e9a97205e4013105</sys_id>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name/>
         <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
         <sys_policy/>
         <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
-        <sys_update_name>sp_instance_eb4708c1c3e52210e9a97205e40131e2</sys_update_name>
+        <sys_update_name>sp_instance_f57605aec3a12210e9a97205e4013105</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-15 12:52:56</sys_updated_on>
+        <sys_updated_on>2025-05-19 09:57:23</sys_updated_on>
         <title/>
         <url/>
         <widget_parameters><![CDATA[{
@@ -40,8 +40,8 @@
 		"displayValue": "Medium"
 	},
 	"text_alignment": {
-		"value": "Center",
-		"displayValue": "Center"
+		"value": "Left",
+		"displayValue": "Left"
 	},
 	"show_icon": {
 		"value": "true",
@@ -64,16 +64,12 @@
 		"displayValue": ""
 	},
 	"icon_background_color": {
-		"value": "",
-		"displayValue": ""
+		"value": "false",
+		"displayValue": "false"
 	},
 	"icon_background_hexcode": {
 		"value": "",
 		"displayValue": ""
-	},
-	"quick_links": {
-		"value": "b5fa4809c3e52210e9a97205e4013138,57088011c3612210e9a97205e40131df,5010e4ddc3a12210e9a97205e401316f,69cae01dc3e12210e9a97205e401317b",
-		"displayValue": "Prenota veicolo, Crea nuovo utente, Creazione nuovo veicolo, Annullamento prenotazione"
 	},
 	"show_text_overlay": {
 		"value": "true",
@@ -91,6 +87,10 @@
 		"value": "",
 		"displayValue": ""
 	},
+	"quick_links": {
+		"value": "b5fa4809c3e52210e9a97205e4013138,69cae01dc3e12210e9a97205e401317b,5010e4ddc3a12210e9a97205e401316f,57088011c3612210e9a97205e40131df",
+		"displayValue": "Prenota veicolo, Annullamento prenotazione, Creazione nuovo veicolo, Crea nuovo utente"
+	},
 	"load_config": {
 		"value": "async",
 		"displayValue": "async"
@@ -101,5 +101,5 @@
 	}
 }]]></widget_parameters>
     </sp_instance>
-    <sys_translated_text action="delete_multiple" query="documentkey=eb4708c1c3e52210e9a97205e40131e2"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=f57605aec3a12210e9a97205e4013105"/>
 </record_update>

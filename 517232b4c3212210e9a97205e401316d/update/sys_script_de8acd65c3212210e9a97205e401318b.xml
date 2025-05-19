@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>true</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_1763019_furgonch_prenotazione</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="x_1763019_furgonch_prenotazione">null<item endquery="false" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Gestione tutte funzionalità prenotazione</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous) {
+ 
+    var isDelete = current.operation() === 'delete';
+    var isInsert = current.operation() === 'insert';
+    var isUpdate = current.operation() === 'update';
+ 
+    var veicoloTable = 'x_1763019_furgonch_veicolo';
+    var utenteTable = 'x_1763019_furgonch_utente';
+ 
+    // === DELETE ===
+    if (isDelete && current.veicolo) {
+        var veicoloDel = new GlideRecord(veicoloTable);
+        if (veicoloDel.get(current.veicolo)) {
+            veicoloDel.setValue('disponibile', 'disponibile');
+            veicoloDel.update();
+            gs.info('[DELETE] Veicolo reso disponibile.');
+        }
+        return;
+    }
+ 
+    // === INSERT ===
+    if (isInsert && current.veicolo) {
+        var veicoloIns = new GlideRecord(veicoloTable);
+        if (veicoloIns.get(current.veicolo)) {
+            veicoloIns.setValue('disponibile', 'non_disponibile');
+            veicoloIns.update();
+            gs.info('[INSERT] Veicolo impostato come non disponibile.');
+        }
+        return;
+    }
+ 
+ 
+    // === ANNULLAMENTO DA FLAG ===
+    if (isUpdate && current.annullare_prenotazione && !previous.annullare_prenotazione) {
+ 
+        current.stato_prenotazione = 'annullata';
+        current.costo_totale = 0;
+ 
+        if (current.veicolo) {
+            var veicoloAnnulla = new GlideRecord(veicoloTable);
+            if (veicoloAnnulla.get(current.veicolo)) {
+                veicoloAnnulla.setValue('disponibile', 'disponibile');
+                veicoloAnnulla.update();
+                gs.info('[ANNULLAMENTO] Veicolo reso disponibile.');
+            }
+        }
+ 
+        // Rimborso solo se assicurata
+        if (current.assicurata) {
+            var utente = new GlideRecord(utenteTable);
+            if (utente.get(current.cliente)) {
+                var rimborso = parseFloat(previous.costo_totale || 0);
+                utente.setValue('credito', parseFloat(utente.getValue('credito')) + rimborso);
+                utente.update();
+                current.credito_rimborsato = rimborso;
+                gs.info('[ANNULLAMENTO] Rimborso di €' + rimborso + ' effettuato.');
+            }
+        } else {
+            current.credito_rimborsato = 0;
+            gs.info('[ANNULLAMENTO] Nessun rimborso (prenotazione non assicurata).');
+        }
+ 
+        return;
+    }
+ 
+    // === CAMBIO STATO MANUALE ===
+    if (isUpdate &&
+        current.stato_prenotazione == 'annullata' &&
+        previous.stato_prenotazione != 'annullata') {
+ 
+        current.costo_totale = 0;
+ 
+        if (current.veicolo) {
+            var veicoloStat = new GlideRecord(veicoloTable);
+            if (veicoloStat.get(current.veicolo)) {
+                veicoloStat.setValue('disponibile', 'disponibile');
+                veicoloStat.update();
+                gs.info('[STATO ANNULLATA] Veicolo reso disponibile.');
+            }
+        }
+ 
+        if (current.assicurata) {
+            var utenteStat = new GlideRecord(utenteTable);
+            if (utenteStat.get(current.cliente)) {
+                var costoPrecedente = parseFloat(previous.costo_totale || 0);
+                utenteStat.setValue('credito', parseFloat(utenteStat.getValue('credito')) + costoPrecedente);
+                utenteStat.update();
+                current.credito_rimborsato = costoPrecedente;
+                gs.info('[STATO ANNULLATA] Rimborso di €' + costoPrecedente + ' effettuato.');
+            }
+        } else {
+            current.credito_rimborsato = 0;
+            gs.info('[STATO ANNULLATA] Nessun rimborso.');
+        }
+ 
+        return;
+    }
+ 
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-16 07:43:21</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>de8acd65c3212210e9a97205e401318b</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Gestione tutte funzionalità prenotazione</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_update_name>sys_script_de8acd65c3212210e9a97205e401318b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-16 10:32:58</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=de8acd65c3212210e9a97205e401318b"/>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>de8acd65c3212210e9a97205e401318b</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-16 07:43:20</sys_created_on>
+        <sys_id>b42b45a5c3212210e9a97205e401313f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-16 07:43:20</sys_updated_on>
+        <table>sys_script</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
