@@ -73,48 +73,49 @@
         <sc_ic_item_staging/>
         <sc_ic_version/>
         <sc_template/>
-        <script><![CDATA[// Ottenere utente corrente
-var utente = gs.getUserID();
-var utenteRec = new GlideRecord('x_1763019_furgonch_utente');
-if (!utenteRec.get(utente)) {
-    gs.addErrorMessage("Errore nel recupero del credito utente.");
+        <script><![CDATA[// // Ottenere utente corrente
+// var utente = gs.getUserID();
+// var utenteRec = new GlideRecord('x_1763019_furgonch_utente');
+// if (!utenteRec.get(utente)) {
+//     gs.addErrorMessage("Errore nel recupero del credito utente.");
    
-}
+// }
  
-// Calcolare giorni tra data inizio e data fine (producer contiene i dati del form)
-var dataInizio = new GlideDateTime(producer.data_prenotazione);
-var dataFine = new GlideDateTime(producer.data_restituzione);
-var diffMillis = dataFine.getNumericValue() - dataInizio.getNumericValue();
-var giorni = Math.ceil(diffMillis / (1000 * 60 * 60 * 24));
+// // Calcolare giorni tra data inizio e data fine (producer contiene i dati del form)
+// var dataInizio = new GlideDateTime(producer.data_prenotazione);
+// var dataFine = new GlideDateTime(producer.data_restituzione);
+// var diffMillis = dataFine.getNumericValue() - dataInizio.getNumericValue();
+// var giorni = Math.ceil(diffMillis / (1000 * 60 * 60 * 24));
  
-var modello = producer.modello;
-var veicolo = new GlideRecord('x_1763019_furgonch_veicolo');
-veicolo.addQuery('modello', modello);
-veicolo.addQuery('disponibile', 'Disponibile');
-veicolo.query();
+// var modello = producer.modello;
+// var veicolo = new GlideRecord('x_1763019_furgonch_veicolo');
+// veicolo.addQuery('modello', modello);
+// veicolo.addQuery('disponibile', 'Disponibile');
+// veicolo.query();
  
-if (!veicolo.next()) {
-    gs.addErrorMessage("Nessun veicolo disponibile per il modello selezionato.");
+// if (!veicolo.next()) {
+//     gs.addErrorMessage("Nessun veicolo disponibile per il modello selezionato.");
    
-}
+// }
  
-var costoGiornaliero = parseFloat(veicolo.getValue('costo_giornaliero'));
-var costoTotale = costoGiornaliero * giorni;
-var creditoUtente = parseFloat(utenteRec.getValue('credito'));
+// var costoGiornaliero = parseFloat(veicolo.getValue('costo_giornaliero'));
+// var costoTotale = costoGiornaliero * giorni;
+// var creditoUtente = parseFloat(utenteRec.getValue('credito'));
  
-if (creditoUtente < costoTotale) {
-    gs.addErrorMessage("Credito insufficiente per completare la prenotazione. Hai " + creditoUtente + " €, ma servono " + costoTotale + " €.");
+// if (creditoUtente < costoTotale) {
+//     gs.addErrorMessage("Credito insufficiente per completare la prenotazione. Hai " + creditoUtente + " €, ma servono " + costoTotale + " €.");
    
-}
+// }
  
-// Impostare i campi sul record corrente prima di inserire
-current.cliente = utente;
-current.costo_totale = costoTotale;
+// // Impostare i campi sul record corrente prima di inserire
+// current.cliente = utente;
+// current.costo_totale = costoTotale;
  
-// Inserire record prenotazione
-current.insert();
+// // Inserire record prenotazione
+// // current.insert();
  
 // Redirect dopo submit
+current.cliente = gs.getUserID();
 producer.portal_redirect = "furgonchin?id=homepage";
  
  ]]></script>
@@ -126,14 +127,14 @@ producer.portal_redirect = "furgonchin?id=homepage";
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-05-14 13:32:31</sys_created_on>
         <sys_id>50e70805c3e52210e9a97205e401318f</sys_id>
-        <sys_mod_count>59</sys_mod_count>
+        <sys_mod_count>66</sys_mod_count>
         <sys_name>Prenotazione veicolo</sys_name>
         <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
         <sys_policy/>
         <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
         <sys_update_name>sc_cat_item_producer_50e70805c3e52210e9a97205e401318f</sys_update_name>
-        <sys_updated_by>system</sys_updated_by>
-        <sys_updated_on>2025-05-19 14:07:24</sys_updated_on>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-20 15:14:05</sys_updated_on>
         <table_name>x_1763019_furgonch_prenotazione</table_name>
         <taxonomy_topic/>
         <template/>
@@ -141,7 +142,7 @@ producer.portal_redirect = "furgonchin?id=homepage";
         <type>item</type>
         <use_sc_layout>true</use_sc_layout>
         <vendor/>
-        <version>59</version>
+        <version>66</version>
         <view/>
         <visible_bundle>true</visible_bundle>
         <visible_guide>true</visible_guide>

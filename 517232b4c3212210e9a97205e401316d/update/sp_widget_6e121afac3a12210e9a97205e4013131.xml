@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {
+  /* widget controller */
+  var c = this;
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>Visualizza la lista dei veicoli solo per gli utenti del gruppo Operatori</description>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>lista_veicoli_operatori</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>Lista Veicoli per Operatori</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  var userSysId = gs.getUserID();
+  var grUserGroup = new GlideRecord('sys_user_grmember');
+  grUserGroup.addQuery('user', userSysId);
+  grUserGroup.query();
+
+  var isOperatore = false;
+  var gruppoOperatoriId = '5ccf0ffcc3a12210e9a97205e4013131';
+
+  while (grUserGroup.next()) {
+    if (grUserGroup.group.toString() === gruppoOperatoriId) {
+      isOperatore = true;
+      break;
+    }
+  }
+
+  data.isOperatore = isOperatore;
+  data.veicoli = [];
+
+  if (isOperatore) {
+    var grVeicoli = new GlideRecord('x_1763019_furgonch_veicolo');
+    grVeicoli.query();
+    while (grVeicoli.next()) {
+      data.veicoli.push({
+        categoria: grVeicoli.getDisplayValue('categoria'),
+        marca: grVeicoli.getDisplayValue('marca'),
+        modello: grVeicoli.getDisplayValue('modello'),
+        costoGiornaliero: grVeicoli.getDisplayValue('costo_giornaliero'),
+        disponibilita: grVeicoli.getDisplayValue('disponibile')
+      });
+    }
+  }
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-20 10:08:05</sys_created_on>
+        <sys_id>6e121afac3a12210e9a97205e4013131</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>Lista Veicoli per Operatori</sys_name>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_update_name>sp_widget_6e121afac3a12210e9a97205e4013131</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-20 13:06:35</sys_updated_on>
+        <template><![CDATA[<div>
+  <div ng-if="data.isOperatore">
+    <h3>Lista Veicoli</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Categoria</th>
+          <th>Marca</th>
+          <th>Modello</th>
+          <th>Costo Giornaliero</th>
+          <th>Disponibilità</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="veicolo in data.veicoli">
+          <td>{{veicolo.categoria}}</td>
+          <td>{{veicolo.marca}}</td>
+          <td>{{veicolo.modello}}</td>
+          <td>{{veicolo.costoGiornaliero}}</td>
+          <td>
+            <span ng-class="{
+              'text-success': veicolo.disponibilita === 'Disponibile',
+              'text-danger': veicolo.disponibilita === 'Non disponibile'
+            }">
+              {{veicolo.disponibilita}}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+]]></template>
+    </sp_widget>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>6e121afac3a12210e9a97205e4013131</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-20 10:08:04</sys_created_on>
+        <sys_id>40a29eb6c3e12210e9a97205e40131bd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-20 10:08:04</sys_updated_on>
+        <table>sp_widget</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
