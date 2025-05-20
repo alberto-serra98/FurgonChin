@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {
+  /* widget controller */
+  var c = this;
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>credito_utente_widget</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>Credito Utente</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  var userSysId = gs.getUserID();
+  var grUserGroup = new GlideRecord('sys_user_grmember');
+  grUserGroup.addQuery('user', userSysId);
+  grUserGroup.query();
+
+  var isCliente = false;
+  var gruppoClientiId = '8f5f47fcc3a12210e9a97205e40131d0'; 
+
+  while (grUserGroup.next()) {
+    if (grUserGroup.group.toString() === gruppoClientiId) {
+      isCliente = true;
+      break;
+    }
+  }
+
+  data.isCliente = isCliente;
+
+  if (isCliente) {
+    var utente = new GlideRecord('x_1763019_furgonch_utente'); 
+    utente.addQuery('sys_id', userSysId);
+    utente.query();
+
+    if (utente.next()) {
+      data.credito = utente.getValue('credito');
+      data.nomeCompleto = utente.getValue('first_name') + ' ' + utente.getValue('last_name');
+    }
+  }
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-20 07:50:03</sys_created_on>
+        <sys_id>9212397ec3212210e9a97205e40131a3</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>Credito Utente</sys_name>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_update_name>sp_widget_9212397ec3212210e9a97205e40131a3</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-20 13:38:04</sys_updated_on>
+        <template><![CDATA[<div>
+  <div ng-if="data.isCliente">
+    <h4>Benvenuto, {{data.nomeCompleto}}</h4>
+    <p>Il tuo credito attuale è: <strong>{{data.credito}} €</strong></p>
+  </div>
+</div>]]></template>
+    </sp_widget>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>9212397ec3212210e9a97205e40131a3</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-20 07:50:02</sys_created_on>
+        <sys_id>3903b5bec3212210e9a97205e40131f7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-20 07:50:02</sys_updated_on>
+        <table>sp_widget</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
