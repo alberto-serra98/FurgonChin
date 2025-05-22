@@ -2,7 +2,7 @@
     <item_option_new action="INSERT_OR_UPDATE">
         <active>true</active>
         <attributes/>
-        <cat_item display_value="Annullamento prenotazione">70d9a4d9c3e12210e9a97205e40131e8</cat_item>
+        <cat_item display_value="Eliminazione utente">e08e94afc3a12210e9a97205e40131e2</cat_item>
         <category/>
         <choice_direction>down</choice_direction>
         <choice_field/>
@@ -33,33 +33,32 @@
         <list_table/>
         <lookup_label/>
         <lookup_price/>
-        <lookup_table>x_1763019_furgonch_prenotazione</lookup_table>
+        <lookup_table>x_1763019_furgonch_utente</lookup_table>
         <lookup_unique>false</lookup_unique>
-        <lookup_value>id_prenotazione</lookup_value>
+        <lookup_value>user_name</lookup_value>
         <macro/>
         <macroponent/>
-        <mandatory>true</mandatory>
+        <mandatory>false</mandatory>
         <map_to_field>false</map_to_field>
         <mask_use_confirmation>false</mask_use_confirmation>
         <mask_use_encryption>false</mask_use_encryption>
-        <name>id_prenotazione</name>
+        <name>utente</name>
         <not_available_conversation>false</not_available_conversation>
-        <order>10</order>
+        <order/>
         <post_insert_script/>
         <price_if_checked>0</price_if_checked>
         <pricing_implications>false</pricing_implications>
         <published_ref/>
-        <question_text>ID prenotazione</question_text>
+        <question_text>utente cliente</question_text>
         <read_only>false</read_only>
         <read_roles/>
         <read_script/>
         <rec_lookup_price/>
         <rec_price_if_checked>0</rec_price_if_checked>
         <record/>
-        <record_producer_table>x_1763019_furgonch_prenotazione</record_producer_table>
+        <record_producer_table>x_1763019_furgonch_utente</record_producer_table>
         <reference/>
-        <reference_qual>javascript: 'stato_prenotazione!=annullata^cliente=' + gs.getUserID();&#13;
-</reference_qual>
+        <reference_qual>javascript: 'ruolo_utente=Cliente'</reference_qual>
         <reference_qual_condition/>
         <rich_text/>
         <roles_to_use_also_request_for/>
@@ -78,16 +77,16 @@
         <summary_macro/>
         <sys_class_name>item_option_new</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2025-05-15 13:41:27</sys_created_on>
-        <sys_id>c7a29dd5c3a52210e9a97205e40131e1</sys_id>
-        <sys_mod_count>8</sys_mod_count>
-        <sys_name>ID prenotazione</sys_name>
+        <sys_created_on>2025-05-22 10:20:45</sys_created_on>
+        <sys_id>6d37ac27c3e12210e9a97205e4013126</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>utente cliente</sys_name>
         <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
         <sys_policy/>
         <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
-        <sys_update_name>item_option_new_c7a29dd5c3a52210e9a97205e40131e1</sys_update_name>
+        <sys_update_name>item_option_new_6d37ac27c3e12210e9a97205e4013126</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-22 13:00:58</sys_updated_on>
+        <sys_updated_on>2025-05-22 10:26:07</sys_updated_on>
         <table/>
         <tooltip/>
         <topic_block/>
@@ -107,22 +106,22 @@
         <visible_summary>true</visible_summary>
         <write_roles/>
     </item_option_new>
-    <sys_translated_text action="delete_multiple" query="documentkey=c7a29dd5c3a52210e9a97205e40131e1"/>
-    <fx_price action="delete_multiple" query="id=c7a29dd5c3a52210e9a97205e40131e1"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=6d37ac27c3e12210e9a97205e4013126"/>
+    <fx_price action="delete_multiple" query="id=6d37ac27c3e12210e9a97205e4013126"/>
     <fx_price action="INSERT_OR_UPDATE">
         <amount>0</amount>
         <currency display_value="EUR">EUR</currency>
         <field>price_if_checked</field>
-        <id>c7a29dd5c3a52210e9a97205e40131e1</id>
+        <id>6d37ac27c3e12210e9a97205e4013126</id>
         <parent/>
         <reference_amount>0</reference_amount>
         <reference_currency display_value="USD">USD</reference_currency>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2025-05-15 13:41:27</sys_created_on>
-        <sys_id>c5839d5dc3a52210e9a97205e4013170</sys_id>
+        <sys_created_on>2025-05-22 10:20:46</sys_created_on>
+        <sys_id>11b8ecabc3e12210e9a97205e401315f</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-15 13:41:27</sys_updated_on>
+        <sys_updated_on>2025-05-22 10:20:46</sys_updated_on>
         <table>item_option_new</table>
         <type>calculated</type>
     </fx_price>
@@ -130,16 +129,16 @@
         <amount>0</amount>
         <currency display_value="EUR">EUR</currency>
         <field>rec_price_if_checked</field>
-        <id>c7a29dd5c3a52210e9a97205e40131e1</id>
+        <id>6d37ac27c3e12210e9a97205e4013126</id>
         <parent/>
         <reference_amount>0</reference_amount>
         <reference_currency display_value="USD">USD</reference_currency>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2025-05-15 13:41:27</sys_created_on>
-        <sys_id>8d839d5dc3a52210e9a97205e401316e</sys_id>
+        <sys_created_on>2025-05-22 10:20:46</sys_created_on>
+        <sys_id>ddb8ecabc3e12210e9a97205e401315d</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-15 13:41:27</sys_updated_on>
+        <sys_updated_on>2025-05-22 10:20:46</sys_updated_on>
         <table>item_option_new</table>
         <type>calculated</type>
     </fx_price>

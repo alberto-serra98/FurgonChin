@@ -6,7 +6,155 @@
   var c = this;
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css/>
+        <css>/* General Card Styling */&#13;
+.card {&#13;
+    border-radius: 12px;&#13;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);&#13;
+    background-color: #ffffff;&#13;
+    overflow: hidden; /* Ensures borders/shadows are clean */&#13;
+}&#13;
+&#13;
+/* Heading Styling */&#13;
+.card h4 {&#13;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;&#13;
+    color: #2c3e50; /* Dark blue-gray */&#13;
+    font-weight: 700;&#13;
+    margin-bottom: 25px;&#13;
+    padding-bottom: 10px;&#13;
+    border-bottom: 2px solid #e0e0e0; /* Subtle underline */&#13;
+}&#13;
+&#13;
+/* Table Styling */&#13;
+.table {&#13;
+    width: 100%;&#13;
+    border-collapse: separate; /* Allows for rounded corners on cells */&#13;
+    border-spacing: 0;&#13;
+    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;&#13;
+    color: #34495e; /* Slightly lighter dark blue-gray */&#13;
+}&#13;
+&#13;
+/* Table Header Styling */&#13;
+.table thead th {&#13;
+    background-color: #6a89cc; /* A pleasant blue */&#13;
+    color: white;&#13;
+    padding: 12px 18px; /* Slightly reduced padding */&#13;
+    text-align: left;&#13;
+    font-weight: 600;&#13;
+    font-size: 0.95em; /* Slightly smaller font size */&#13;
+    border-bottom: none; /* Remove default table border */&#13;
+}&#13;
+&#13;
+.table thead tr th:first-child {&#13;
+    border-top-left-radius: 8px;&#13;
+}&#13;
+&#13;
+.table thead tr th:last-child {&#13;
+    border-top-right-radius: 8px;&#13;
+}&#13;
+&#13;
+/* Table Body Row Styling */&#13;
+.table tbody tr:nth-child(even) {&#13;
+    background-color: #f8f9fa; /* Light gray for even rows */&#13;
+}&#13;
+&#13;
+.table tbody tr:nth-child(odd) {&#13;
+    background-color: #ffffff; /* White for odd rows */&#13;
+}&#13;
+&#13;
+/* Table Data Cell Styling */&#13;
+.table tbody td {&#13;
+    padding: 10px 18px; /* Slightly reduced padding */&#13;
+    border-top: 1px solid #dee2e6; /* Light border between rows */&#13;
+    font-size: 0.88em; /* Slightly smaller font size */&#13;
+}&#13;
+&#13;
+/* Specific Cell Styling for 'Annullata' status */&#13;
+.table tbody tr.text-danger {&#13;
+    color: #e74c3c !important; /* Red for cancelled status */&#13;
+    font-weight: 500;&#13;
+}&#13;
+&#13;
+.table tbody tr.text-danger td {&#13;
+    border-color: #f5c6cb; /* Lighter red border for danger rows */&#13;
+}&#13;
+&#13;
+/* New: Individual Column Colors for subtle variety */&#13;
+.table tbody td:nth-child(2) { /* ID Prenotazione */&#13;
+    color: #4a69bd; /* Medium Blue */&#13;
+    font-weight: 500;&#13;
+}&#13;
+&#13;
+.table tbody td:nth-child(3) { /* Categoria */&#13;
+    color: #27ae60; /* Emerald Green */&#13;
+}&#13;
+&#13;
+.table tbody td:nth-child(4) { /* Marca */&#13;
+    color: #8e44ad; /* Amethyst Purple */&#13;
+}&#13;
+&#13;
+.table tbody td:nth-child(5) /* Modello */ {&#13;
+    color: #d35400; /* Pumpkin Orange */&#13;
+}&#13;
+&#13;
+.table tbody td:nth-child(8) { /* Stato */&#13;
+    font-weight: 600;&#13;
+}&#13;
+&#13;
+.table tbody td:nth-child(9) { /* Assicurata */&#13;
+    font-weight: 500;&#13;
+}&#13;
+&#13;
+.table tbody td:nth-child(10) { /* Costo Totale */&#13;
+    color: #16a085; /* Turquoise */&#13;
+    font-weight: 600;&#13;
+}&#13;
+&#13;
+&#13;
+/* "No reservations found" message styling */&#13;
+.card div[ng-if="data.prenotazioni.length === 0"] p {&#13;
+    color: #7f8c8d; /* Grayish text */&#13;
+    font-style: italic;&#13;
+    text-align: center;&#13;
+    padding: 30px;&#13;
+    font-size: 1.0em; /* Slightly smaller */&#13;
+}&#13;
+&#13;
+/* --- */&#13;
+/* Responsive adjustments (optional but recommended) */&#13;
+@media (max-width: 768px) {&#13;
+    .table thead {&#13;
+        display: none; /* Hide header on small screens */&#13;
+    }&#13;
+&#13;
+    .table, .table tbody, .table tr, .table td {&#13;
+        display: block;&#13;
+        width: 100%;&#13;
+    }&#13;
+&#13;
+    .table tr {&#13;
+        margin-bottom: 15px;&#13;
+        border: 1px solid #dee2e6;&#13;
+        border-radius: 8px;&#13;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);&#13;
+    }&#13;
+&#13;
+    .table tbody td {&#13;
+        text-align: right;&#13;
+        padding-left: 50%;&#13;
+        position: relative;&#13;
+        border: none;&#13;
+    }&#13;
+&#13;
+    .table tbody td::before {&#13;
+        content: attr(data-label);&#13;
+        position: absolute;&#13;
+        left: 15px;&#13;
+        width: calc(50% - 30px);&#13;
+        text-align: left;&#13;
+        font-weight: 600;&#13;
+        color: #555;&#13;
+    }&#13;
+}</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -47,71 +195,83 @@
     }
 
     while (grPrenotazioni.next()) {
+        var costoTotale = grPrenotazioni.costo_totale.getDisplayValue();
+
+        // Se la prenotazione è annullata ed è assicurata, il costo è 0
+        if (grPrenotazioni.stato_prenotazione == 'Annullata' && grPrenotazioni.assicurata == true) {
+            costoTotale = '0.00';
+        }
+
         data.prenotazioni.push({
-            id_prenotazione: grPrenotazioni.id_prenotazione.getDisplayValue(),
+            id_prenotazione: grPrenotazioni.getDisplayValue('id_prenotazione'),
             utente: grPrenotazioni.cliente.getDisplayValue(),
             categoria: grPrenotazioni.veicolo.categoria.getDisplayValue(),
             marca: grPrenotazioni.marca.getDisplayValue(),
             modello: grPrenotazioni.modello.getDisplayValue(),
-            dataInizio: grPrenotazioni.data_prenotazione.getDisplayValue(),
-            dataFine: grPrenotazioni.data_restituzione.getDisplayValue(),
-            stato: grPrenotazioni.stato_prenotazione.getDisplayValue(),
+            dataInizio: grPrenotazioni.getDisplayValue('data_prenotazione'),
+            dataFine: grPrenotazioni.getDisplayValue('data_restituzione'),
+            stato: grPrenotazioni.getDisplayValue('stato_prenotazione'),
             assicurata: grPrenotazioni.assicurata ? 'Sì' : 'No',
-            costoTotale: grPrenotazioni.costo_totale.getDisplayValue()
+            costoTotale: costoTotale,
+			creditoRimborsato:grPrenotazioni.credito_rimborsato.getDisplayValue()
         });
     }
-})();]]></script>
+})();
+]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-05-20 08:48:31</sys_created_on>
         <sys_id>e6fe75fac3612210e9a97205e4013193</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>25</sys_mod_count>
         <sys_name>Prenotazioni Veicoli </sys_name>
         <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
         <sys_policy/>
         <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
         <sys_update_name>sp_widget_e6fe75fac3612210e9a97205e4013193</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-20 15:12:43</sys_updated_on>
+        <sys_updated_on>2025-05-22 14:14:24</sys_updated_on>
         <template><![CDATA[<div class="card p-4 my-4">
-	<h4 class="mb-3">Prenotazioni Veicoli</h4>
-		<div ng-if="data.prenotazioni.length > 0">
-		<table class="table table-striped table-bordered">
-			<thead>
-			<tr>
-				<th ng-if="data.prenotazioni[0].utente">Utente</th>
-				<th>ID Prenotazione</th>
-				<th>Categoria</th>
-				<th>Marca</th>
-				<th>Modello</th>
-				<th>Data Inizio</th>
-				<th>Data Fine</th>
-				<th>Stato</th>
-				<th>Assicurata</th>
-				<th>Costo Totale</th>
-			</tr>
-			</thead>
-				<tbody>
-					<tr ng-repeat="p in data.prenotazioni" ng-class="{'text-danger': p.stato === 'Annullata'}">
-						<td ng-if="p.utente">{{p.utente}}</td>
-						<td>{{p.id_prenotazione}}</td>
-						<td>{{p.categoria}}</td>
-						<td>{{p.marca}}</td>
-						<td>{{p.modello}}</td>
-						<td>{{p.dataInizio}}</td>
-						<td>{{p.dataFine}}</td>
-						<td>{{p.stato}}</td>
-						<td>{{p.assicurata}}</td>
-						<td>{{p.costoTotale}}</td>
-					</tr>
-				</tbody>
-			</table>
-	</div>
-	<div ng-if="data.prenotazioni.length === 0">
-	<p>Nessuna prenotazione trovata.</p>
-	</div>
-</div>]]></template>
+  <h4 class="mb-3">Prenotazioni Veicoli</h4>
+  <div ng-if="data.prenotazioni.length > 0">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th ng-if="data.prenotazioni[0].utente">Utente</th>
+          <th>ID Prenotazione</th>
+          <th>Categoria</th>
+          <th>Marca</th>
+          <th>Modello</th>
+          <th>Data Inizio</th>
+          <th>Data Fine</th>
+          <th>Stato</th>
+          <th>Assicurata</th>
+          <th>Costo Totale</th>
+          <th>Credito Rimborsato</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="p in data.prenotazioni" ng-class="{'text-danger': p.stato === 'Annullata'}">
+          <td ng-if="p.utente">{{p.utente}}</td>
+          <td>{{p.id_prenotazione}}</td>
+          <td>{{p.categoria}}</td>
+          <td>{{p.marca}}</td>
+          <td>{{p.modello}}</td>
+          <td>{{p.dataInizio}}</td>
+          <td>{{p.dataFine}}</td>
+          <td>{{p.stato}}</td>
+          <td>{{p.assicurata}}</td>
+          <td>{{p.costoTotale}}</td>
+          <td>{{p.creditoRimborsato}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div ng-if="data.prenotazioni.length === 0">
+    <p>Nessuna prenotazione trovata.</p>
+  </div>
+</div>
+]]></template>
     </sp_widget>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>e6fe75fac3612210e9a97205e4013193</id>

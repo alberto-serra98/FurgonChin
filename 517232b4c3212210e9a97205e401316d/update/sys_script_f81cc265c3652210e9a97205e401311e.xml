@@ -55,31 +55,50 @@
             gs.info('[INSERT] Veicolo impostato come non disponibile.');
         }
  
-        // Ricalcolo credito aggiornato
+        // Ricalcolo credito
         var utente = new GlideRecord(utenteTable);
         if (utente.get(current.cliente)) {
             var costoPrenotazione = parseFloat(current.costo_totale || 0);
             var creditoAttuale = parseFloat(utente.getValue('credito'));
  
-            // Check credito disponibile
             if (creditoAttuale >= costoPrenotazione) {
                 utente.setValue('credito', creditoAttuale - costoPrenotazione);
                 utente.update();
                 gs.info('[INSERT] Credito scalato. Nuovo saldo: €' + (creditoAttuale - costoPrenotazione));
             } else {
                 gs.error('[INSERT] Credito insufficiente per prenotare.');
-                current.setAbortAction(true); // Annulla la prenotazione
+                current.setAbortAction(true); // Blocca la prenotazione
             }
         }
  
         return;
     }
  
- 
     // === ANNULLAMENTO da flag ===
     if (isUpdate && current.annullare_prenotazione && !previous.annullare_prenotazione) {
         current.stato_prenotazione = 'annullata';
-        current.costo_totale = 0;
+ 
+        if (current.assicurata && current.cliente) {
+            // Se assicurata → rimborso + costo azzerato
+            var utenteAnn = new GlideRecord(utenteTable);
+            if (utenteAnn.get(current.cliente)) {
+                var rimborso = parseFloat(previous.costo_totale || 0);
+                var creditoAttuale = parseFloat(utenteAnn.getValue('credito') || 0);
+                var creditoNuovo = Math.min(creditoAttuale + rimborso, 1500);
+                var effettivoRimborso = creditoNuovo - creditoAttuale;
+ 
+                utenteAnn.setValue('credito', creditoNuovo);
+                utenteAnn.update();
+ 
+                current.credito_rimborsato = effettivoRimborso;
+                current.costo_totale = 0;
+                gs.info('[ANNULLAMENTO] Rimborso effettivo: €' + effettivoRimborso);
+            }
+        } else {
+            // Non assicurata → nessun rimborso, costo invariato
+            current.credito_rimborsato = 0;
+            current.costo_totale = previous.costo_totale;
+        }
  
         // Rendi veicolo disponibile
         if (current.veicolo) {
@@ -90,42 +109,13 @@
             }
         }
  
-        // Rimborso
-        if (current.assicurata && current.cliente) {
-            var utenteAnn = new GlideRecord(utenteTable);
-            if (utenteAnn.get(current.cliente)) {
-                var rimborso = parseFloat(previous.costo_totale || 0);
-                var creditoAttuale = parseFloat(utenteAnn.getValue('credito') || 0);
-                var creditoNuovo = Math.min(creditoAttuale + rimborso, 1500); // MAX 1500
-                var effettivoRimborso = creditoNuovo - creditoAttuale;
- 
-                utenteAnn.setValue('credito', creditoNuovo);
-                utenteAnn.update();
- 
-                current.credito_rimborsato = effettivoRimborso;
-                gs.info('[ANNULLAMENTO] Rimborso effettivo: €' + effettivoRimborso);
-            }
-        } else {
-            current.credito_rimborsato = 0;
-        }
- 
         return;
     }
  
-    // === CAMBIO STATO MANUALE ===
+    // === CAMBIO MANUALE STATO a "annullata" ===
     if (isUpdate &&
         current.stato_prenotazione == 'annullata' &&
         previous.stato_prenotazione != 'annullata') {
- 
-        current.costo_totale = 0;
- 
-        if (current.veicolo) {
-            var veicoloStat = new GlideRecord(veicoloTable);
-            if (veicoloStat.get(current.veicolo)) {
-                veicoloStat.setValue('disponibile', 'disponibile');
-                veicoloStat.update();
-            }
-        }
  
         if (current.assicurata && current.cliente) {
             var utenteStat = new GlideRecord(utenteTable);
@@ -139,10 +129,20 @@
                 utenteStat.update();
  
                 current.credito_rimborsato = effettivoRimborso;
+                current.costo_totale = 0;
                 gs.info('[STATO ANNULLATA] Rimborso effettivo: €' + effettivoRimborso);
             }
         } else {
             current.credito_rimborsato = 0;
+            current.costo_totale = previous.costo_totale;
+        }
+ 
+        if (current.veicolo) {
+            var veicoloStat = new GlideRecord(veicoloTable);
+            if (veicoloStat.get(current.veicolo)) {
+                veicoloStat.setValue('disponibile', 'disponibile');
+                veicoloStat.update();
+            }
         }
  
         return;
@@ -157,7 +157,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>f81cc265c3652210e9a97205e401311e</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Gestione funzionalità prenotazione</sys_name>
         <sys_overrides/>
         <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
@@ -165,7 +165,7 @@
         <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
         <sys_update_name>sys_script_f81cc265c3652210e9a97205e401311e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-16 12:28:48</sys_updated_on>
+        <sys_updated_on>2025-05-22 14:54:52</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>

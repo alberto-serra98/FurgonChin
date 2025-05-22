@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_vlist">
+    <sp_instance_vlist action="DELETE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <display_field/>
+        <field_list>id_prenotazione,cliente,categoria,modello,marca,assicurata,data_prenotazione,data_restituzione,costo_totale,stato_prenotazione</field_list>
+        <filter/>
+        <glyph/>
+        <id/>
+        <maximum_entries>5</maximum_entries>
+        <order>2</order>
+        <order_by/>
+        <order_direction>asc</order_direction>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">37904632c3a12210e9a97205e40131b3</sp_column>
+        <sp_page/>
+        <sp_widget display_value="List Respond">539a0381cb13020000f8d856634c9cdb</sp_widget>
+        <sys_class_name>sp_instance_vlist</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-21 14:42:35</sys_created_on>
+        <sys_id>b20bdc57c3292210e9a97205e4013157</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_update_name>sp_instance_vlist_b20bdc57c3292210e9a97205e4013157</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-21 14:46:35</sys_updated_on>
+        <table>x_1763019_furgonch_prenotazione</table>
+        <title/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance_vlist>
+    <sys_translated_text action="DELETE" query="documentkey=b20bdc57c3292210e9a97205e4013157"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="FurgonChin">517232b4c3212210e9a97205e401316d</application>
+        <file_path/>
+        <instance_id>fa0b529d1b3a7154c84543f4bd4bcbb3</instance_id>
+        <instance_name>dev227010</instance_name>
+        <name>sp_instance_vlist_b20bdc57c3292210e9a97205e4013157</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_vlist"><sp_instance_vlist action="INSERT_OR_UPDATE"><active>true</active><class_name/><color>default</color><css/><display_field/><field_list>id_prenotazione,cliente,categoria,modello,marca,assicurata,data_prenotazione,data_restituzione,costo_totale,stato_prenotazione</field_list><filter/><glyph/><id/><maximum_entries>5</maximum_entries><order>2</order><order_by/><order_direction>asc</order_direction><roles/><short_description/><size>md</size><sp_column display_value="1">37904632c3a12210e9a97205e40131b3</sp_column><sp_page/><sp_widget display_value="List Respond">539a0381cb13020000f8d856634c9cdb</sp_widget><sys_class_name>sp_instance_vlist</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2025-05-21 14:42:35</sys_created_on><sys_id>b20bdc57c3292210e9a97205e4013157</sys_id><sys_mod_count>3</sys_mod_count><sys_name/><sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package><sys_policy/><sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope><sys_update_name>sp_instance_vlist_b20bdc57c3292210e9a97205e4013157</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-05-21 14:46:35</sys_updated_on><table>x_1763019_furgonch_prenotazione</table><title/><url/><widget_parameters/></sp_instance_vlist><sys_translated_text action="delete_multiple" query="documentkey=b20bdc57c3292210e9a97205e4013157"/></record_update>]]></payload>
+        <payload_hash>891608514</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>c07540d9c3212210e9a97205e4013105</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-21 14:46:35</sys_created_on>
+        <sys_id>65fbd897c3292210e9a97205e40131b0</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>196f34f80320000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-21 14:46:35</sys_updated_on>
+        <type>Instance of Simple List</type>
+        <update_guid>e9fbd897672922107c090ec1957187af</update_guid>
+        <update_guid_history>e9fbd897672922107c090ec1957187af:891608514,39bb90d3cb2922105f17493439340418:-1985650173,ffab5c57e32922100aebbbb3ad05cda7:741929737,7a0bdc57db292210683495874b3bb259:-1985650173</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">364c1c97c3292210e9a97205e4013146</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-21 14:48:02</sys_created_on>
+        <sys_db_object display_value="" name="sp_instance_vlist">sp_instance_vlist</sys_db_object>
+        <sys_id>538aa92f2c6942989f543ceec7c55690</sys_id>
+        <sys_metadata>b20bdc57c3292210e9a97205e4013157</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_scope_delete display_value="">2f4d918f06694368895a1130a721eb11</sys_scope_delete>
+        <sys_update_name>sp_instance_vlist_b20bdc57c3292210e9a97205e4013157</sys_update_name>
+        <sys_update_version display_value="sp_instance_vlist_b20bdc57c3292210e9a97205e4013157">65fbd897c3292210e9a97205e40131b0</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-21 14:48:02</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

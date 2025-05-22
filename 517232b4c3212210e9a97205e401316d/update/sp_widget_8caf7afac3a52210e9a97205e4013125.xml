@@ -55,14 +55,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-05-20 13:27:51</sys_created_on>
         <sys_id>8caf7afac3a52210e9a97205e4013125</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>Lista utenti per operatori</sys_name>
         <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
         <sys_policy/>
         <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
         <sys_update_name>sp_widget_8caf7afac3a52210e9a97205e4013125</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-20 13:44:34</sys_updated_on>
+        <sys_updated_on>2025-05-21 07:39:41</sys_updated_on>
         <template><![CDATA[<div ng-if="c.data.showWidget">
   <h3>Lista Utenti</h3>
   <table class="table table-striped">
@@ -84,13 +84,15 @@
         <td>{{utente.ruolo}}</td>
         <td>{{utente.sottoruolo}}</td>
         <td>
-          <span ng-if="utente.credito !== null">{{utente.credito | currency}}</span>
-          <span ng-if="utente.credito === null">—</span>
-        </td>
+		<span ng-if="utente.credito !== null">{{utente.credito | currency:"€ "}}</span>
+		<span ng-if="utente.credito === null">—</span>
+		</td>
       </tr>
     </tbody>
   </table>
 </div>
+
+
 ]]></template>
     </sp_widget>
     <sys_es_latest_script action="INSERT_OR_UPDATE">

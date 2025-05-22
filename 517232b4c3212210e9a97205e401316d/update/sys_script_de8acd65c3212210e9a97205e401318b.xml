@@ -6,7 +6,7 @@
         <action_insert>true</action_insert>
         <action_query>false</action_query>
         <action_update>true</action_update>
-        <active>true</active>
+        <active>false</active>
         <add_message>false</add_message>
         <advanced>true</advanced>
         <change_fields>false</change_fields>
@@ -29,111 +29,219 @@
         <rest_variables/>
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous) {
- 
+
     var isDelete = current.operation() === 'delete';
+
     var isInsert = current.operation() === 'insert';
+
     var isUpdate = current.operation() === 'update';
  
     var veicoloTable = 'x_1763019_furgonch_veicolo';
+
     var utenteTable = 'x_1763019_furgonch_utente';
  
     // === DELETE ===
+
     if (isDelete && current.veicolo) {
+
         var veicoloDel = new GlideRecord(veicoloTable);
+
         if (veicoloDel.get(current.veicolo)) {
+
             veicoloDel.setValue('disponibile', 'disponibile');
+
             veicoloDel.update();
+
             gs.info('[DELETE] Veicolo reso disponibile.');
+
         }
+
         return;
+
     }
  
     // === INSERT ===
+
     if (isInsert && current.veicolo) {
+
         var veicoloIns = new GlideRecord(veicoloTable);
+
         if (veicoloIns.get(current.veicolo)) {
+
             veicoloIns.setValue('disponibile', 'non_disponibile');
+
             veicoloIns.update();
+
             gs.info('[INSERT] Veicolo impostato come non disponibile.');
-        }
-        return;
-    }
- 
- 
-    // === ANNULLAMENTO DA FLAG ===
-    if (isUpdate && current.annullare_prenotazione && !previous.annullare_prenotazione) {
- 
-        current.stato_prenotazione = 'annullata';
-        current.costo_totale = 0;
- 
-        if (current.veicolo) {
-            var veicoloAnnulla = new GlideRecord(veicoloTable);
-            if (veicoloAnnulla.get(current.veicolo)) {
-                veicoloAnnulla.setValue('disponibile', 'disponibile');
-                veicoloAnnulla.update();
-                gs.info('[ANNULLAMENTO] Veicolo reso disponibile.');
-            }
+
         }
  
-        // Rimborso solo se assicurata
-        if (current.assicurata) {
-            var utente = new GlideRecord(utenteTable);
-            if (utente.get(current.cliente)) {
-                var rimborso = parseFloat(previous.costo_totale || 0);
-                utente.setValue('credito', parseFloat(utente.getValue('credito')) + rimborso);
+        // Ricalcolo credito
+
+        var utente = new GlideRecord(utenteTable);
+
+        if (utente.get(current.cliente)) {
+
+            var costoPrenotazione = parseFloat(current.costo_totale || 0);
+
+            var creditoAttuale = parseFloat(utente.getValue('credito'));
+ 
+            if (creditoAttuale >= costoPrenotazione) {
+
+                utente.setValue('credito', creditoAttuale - costoPrenotazione);
+
                 utente.update();
-                current.credito_rimborsato = rimborso;
-                gs.info('[ANNULLAMENTO] Rimborso di €' + rimborso + ' effettuato.');
+
+                gs.info('[INSERT] Credito scalato. Nuovo saldo: €' + (creditoAttuale - costoPrenotazione));
+
+            } else {
+
+                gs.error('[INSERT] Credito insufficiente per prenotare.');
+
+                current.setAbortAction(true); // Blocca la prenotazione
+
             }
-        } else {
-            current.credito_rimborsato = 0;
-            gs.info('[ANNULLAMENTO] Nessun rimborso (prenotazione non assicurata).');
+
         }
  
         return;
+
     }
  
-    // === CAMBIO STATO MANUALE ===
+    // === ANNULLAMENTO da flag ===
+
+    if (isUpdate && current.annullare_prenotazione && !previous.annullare_prenotazione) {
+
+        current.stato_prenotazione = 'annullata';
+ 
+        if (current.assicurata && current.cliente) {
+
+            // Se assicurata → rimborso + costo azzerato
+
+            var utenteAnn = new GlideRecord(utenteTable);
+
+            if (utenteAnn.get(current.cliente)) {
+
+                var rimborso = parseFloat(previous.costo_totale || 0);
+
+                var creditoAttuale = parseFloat(utenteAnn.getValue('credito') || 0);
+
+                var creditoNuovo = Math.min(creditoAttuale + rimborso, 1500);
+
+                var effettivoRimborso = creditoNuovo - creditoAttuale;
+ 
+                utenteAnn.setValue('credito', creditoNuovo);
+
+                utenteAnn.update();
+ 
+                current.credito_rimborsato = effettivoRimborso;
+
+                current.costo_totale = 0;
+
+                gs.info('[ANNULLAMENTO] Rimborso effettivo: €' + effettivoRimborso);
+
+            }
+
+        } else {
+
+            // Non assicurata → nessun rimborso, costo invariato
+
+            current.credito_rimborsato = 0;
+
+            current.costo_totale = previous.costo_totale;
+
+        }
+ 
+        // Rendi veicolo disponibile
+
+        if (current.veicolo) {
+
+            var veicoloAnn = new GlideRecord(veicoloTable);
+
+            if (veicoloAnn.get(current.veicolo)) {
+
+                veicoloAnn.setValue('disponibile', 'disponibile');
+
+                veicoloAnn.update();
+
+            }
+
+        }
+ 
+        return;
+
+    }
+ 
+    // === CAMBIO MANUALE STATO a "annullata" ===
+
     if (isUpdate &&
+
         current.stato_prenotazione == 'annullata' &&
+
         previous.stato_prenotazione != 'annullata') {
  
-        current.costo_totale = 0;
+        if (current.assicurata && current.cliente) {
+
+            var utenteStat = new GlideRecord(utenteTable);
+
+            if (utenteStat.get(current.cliente)) {
+
+                var rimborso = parseFloat(previous.costo_totale || 0);
+
+                var creditoAttuale = parseFloat(utenteStat.getValue('credito') || 0);
+
+                var creditoNuovo = Math.min(creditoAttuale + rimborso, 1500);
+
+                var effettivoRimborso = creditoNuovo - creditoAttuale;
  
-        if (current.veicolo) {
-            var veicoloStat = new GlideRecord(veicoloTable);
-            if (veicoloStat.get(current.veicolo)) {
-                veicoloStat.setValue('disponibile', 'disponibile');
-                veicoloStat.update();
-                gs.info('[STATO ANNULLATA] Veicolo reso disponibile.');
+                utenteStat.setValue('credito', creditoNuovo);
+
+                utenteStat.update();
+ 
+                current.credito_rimborsato = effettivoRimborso;
+
+                current.costo_totale = 0;
+
+                gs.info('[STATO ANNULLATA] Rimborso effettivo: €' + effettivoRimborso);
+
             }
+
+        } else {
+
+            current.credito_rimborsato = 0;
+
+            current.costo_totale = previous.costo_totale;
+
         }
  
-        if (current.assicurata) {
-            var utenteStat = new GlideRecord(utenteTable);
-            if (utenteStat.get(current.cliente)) {
-                var costoPrecedente = parseFloat(previous.costo_totale || 0);
-                utenteStat.setValue('credito', parseFloat(utenteStat.getValue('credito')) + costoPrecedente);
-                utenteStat.update();
-                current.credito_rimborsato = costoPrecedente;
-                gs.info('[STATO ANNULLATA] Rimborso di €' + costoPrecedente + ' effettuato.');
+        if (current.veicolo) {
+
+            var veicoloStat = new GlideRecord(veicoloTable);
+
+            if (veicoloStat.get(current.veicolo)) {
+
+                veicoloStat.setValue('disponibile', 'disponibile');
+
+                veicoloStat.update();
+
             }
-        } else {
-            current.credito_rimborsato = 0;
-            gs.info('[STATO ANNULLATA] Nessun rimborso.');
+
         }
  
         return;
+
     }
  
-})(current, previous);]]></script>
+})(current, previous);
+
+ ]]></script>
         <sys_class_name>sys_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-05-16 07:43:21</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>de8acd65c3212210e9a97205e401318b</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Gestione tutte funzionalità prenotazione</sys_name>
         <sys_overrides/>
         <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
@@ -141,7 +249,7 @@
         <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
         <sys_update_name>sys_script_de8acd65c3212210e9a97205e401318b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-16 10:32:58</sys_updated_on>
+        <sys_updated_on>2025-05-22 14:50:29</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>

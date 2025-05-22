@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="catalog_script_client">
+    <catalog_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_catalog>true</applies_catalog>
+        <applies_extended>false</applies_extended>
+        <applies_req_item>false</applies_req_item>
+        <applies_sc_task>false</applies_sc_task>
+        <applies_target_record>false</applies_target_record>
+        <applies_to>item</applies_to>
+        <cat_item display_value="Creazione nuovo veicolo">070ed8d9c3a12210e9a97205e4013171</cat_item>
+        <cat_variable/>
+        <condition/>
+        <description/>
+        <field/>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Validazione costo giornaliero</name>
+        <order/>
+        <published_ref/>
+        <script><![CDATA[function onSubmit() {
+    var costo = g_form.getValue('costo_giornaliero');
+
+    if (isNaN(costo) || parseFloat(costo) <= 0) {
+        g_form.addErrorMessage('Il costo giornaliero deve essere un numero maggiore di zero.');
+        return false;
+    }
+
+    return true;
+}
+]]></script>
+        <sys_class_name>catalog_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-22 07:58:32</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>8cf74063c3612210e9a97205e4013181</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Validazione costo giornaliero</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_update_name>catalog_script_client_8cf74063c3612210e9a97205e4013181</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-22 08:02:10</sys_updated_on>
+        <table/>
+        <type>onSubmit</type>
+        <ui_type>10</ui_type>
+        <va_supported>true</va_supported>
+        <variable_set/>
+        <view/>
+    </catalog_script_client>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>8cf74063c3612210e9a97205e4013181</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-22 07:58:31</sys_created_on>
+        <sys_id>7d2800abc3212210e9a97205e4013135</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-22 07:58:31</sys_updated_on>
+        <table>catalog_script_client</table>
+        <use_es_latest>false</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
