@@ -6,7 +6,83 @@
   var c = this;
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css/>
+        <css>.panel {&#13;
+  border-radius: 12px;&#13;
+  border: 1px solid #dcdcdc;&#13;
+  padding: 20px;&#13;
+  background-color: #fefefe;&#13;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);&#13;
+}&#13;
+&#13;
+.table-rounded {&#13;
+  border: 1px solid #e0e0e0;&#13;
+  border-radius: 12px;&#13;
+  border-collapse: separate;&#13;
+  border-spacing: 0;&#13;
+  overflow: hidden;&#13;
+  width: 100%;&#13;
+  background-color: #ffffff;&#13;
+}&#13;
+&#13;
+.table-rounded th,&#13;
+.table-rounded td {&#13;
+  padding: 12px 16px;&#13;
+  border-bottom: 1px solid #f0f0f0;&#13;
+}&#13;
+&#13;
+.table-rounded th {&#13;
+  background-color: #f3f7fb; /* azzurro molto chiaro */&#13;
+  font-weight: 600;&#13;
+  color: #2f4f4f;&#13;
+  text-align: left;&#13;
+}&#13;
+&#13;
+.table-rounded tr:nth-child(even) {&#13;
+  background-color: #fafafa; /* grigio molto chiaro per righe alternate */&#13;
+}&#13;
+&#13;
+/* Rimosso l'effetto hover */&#13;
+/*&#13;
+.table-rounded tr:hover {&#13;
+  background-color: #f1f1f1;&#13;
+}&#13;
+*/&#13;
+&#13;
+.section-title {&#13;
+  font-size: 20px;&#13;
+  margin-bottom: 20px;&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  color: #007863;&#13;
+}&#13;
+&#13;
+.icon-title {&#13;
+  font-size: 22px;&#13;
+  margin-right: 10px;&#13;
+  color: #007863;&#13;
+}&#13;
+&#13;
+.label-status {&#13;
+  font-size: 14px;&#13;
+  padding: 5px 10px;&#13;
+  border-radius: 12px;&#13;
+  display: inline-block;&#13;
+  min-width: 60px;&#13;
+  text-align: center;&#13;
+  filter: none !important;&#13;
+  color: #fff !important;&#13;
+}&#13;
+&#13;
+.label-success {&#13;
+  background-color: #b7e4c7 !important;&#13;
+  color: #1b4332 !important;&#13;
+}&#13;
+&#13;
+.label-danger {&#13;
+  background-color: #f8d7da !important;&#13;
+  color: #721c24 !important;&#13;
+}&#13;
+</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description>Visibilità della lista utenti per gli operatori</description>
@@ -25,47 +101,65 @@
         <script><![CDATA[(function() {
     data.showWidget = false;
     data.utenti = [];
-
+ 
     var currentUser = gs.getUser();
     var utenteGR = new GlideRecord('x_1763019_furgonch_utente');
     utenteGR.addQuery('sys_id', currentUser.getID());
     utenteGR.query();
-
-    if (utenteGR.next() && utenteGR.getValue('ruolo_utente') == 'operatore') {
+ 
+    if (utenteGR.next() && utenteGR.getValue('ruolo_utente').toLowerCase() == 'operatore') {
         data.showWidget = true;
-
+ 
+        var clienti = [];
+        var operatori = [];
+ 
         var utentiGR = new GlideRecord('x_1763019_furgonch_utente');
         utentiGR.query();
         while (utentiGR.next()) {
-            var ruolo = utentiGR.getDisplayValue('ruolo_utente');
-            data.utenti.push({
+            var ruolo = utentiGR.getDisplayValue('ruolo_utente') || '';
+            var utenteData = {
+                username: utentiGR.getValue('user_name'),
                 nome: utentiGR.getDisplayValue('first_name'),
                 cognome: utentiGR.getDisplayValue('last_name'),
-                username: utentiGR.getValue('user_name'),
+                email: utentiGR.getValue('email'),
                 ruolo: ruolo,
                 sottoruolo: utentiGR.getDisplayValue('sottoruolo_operatore'),
                 credito: (ruolo.toLowerCase() === 'cliente') ? utentiGR.getValue('credito') : null
-            });
+            };
+ 
+            if (ruolo.toLowerCase() === 'cliente') {
+                clienti.push(utenteData);
+            } else if (ruolo.toLowerCase() === 'operatore') {
+                operatori.push(utenteData);
+            } else {
+                // eventuali altri ruoli imprevisti
+                data.utenti.push(utenteData);
+            }
         }
+ 
+        // Ordine finale: prima clienti, poi operatori (inverti se vuoi il contrario)
+        data.utenti = operatori.concat(clienti);
     }
 })();
-]]></script>
+ ]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-05-20 13:27:51</sys_created_on>
         <sys_id>8caf7afac3a52210e9a97205e4013125</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>19</sys_mod_count>
         <sys_name>Lista utenti per operatori</sys_name>
         <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
         <sys_policy/>
         <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
         <sys_update_name>sp_widget_8caf7afac3a52210e9a97205e4013125</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-21 07:39:41</sys_updated_on>
-        <template><![CDATA[<div ng-if="c.data.showWidget">
-  <h3>Lista Utenti</h3>
-  <table class="table table-striped">
+        <sys_updated_on>2025-05-26 09:56:40</sys_updated_on>
+        <template><![CDATA[<div ng-if="c.data.showWidget" class="panel">
+  <h3 class="section-title">
+    <i class="icon-title fas fa-users"></i> Lista Utenti
+  </h3>
+  <table class="table table-striped table-rounded">
     <thead>
       <tr>
         <th>Nome</th>
@@ -84,13 +178,14 @@
         <td>{{utente.ruolo}}</td>
         <td>{{utente.sottoruolo}}</td>
         <td>
-		<span ng-if="utente.credito !== null">{{utente.credito | currency:"€ "}}</span>
-		<span ng-if="utente.credito === null">—</span>
-		</td>
+          <span ng-if="utente.credito !== null">{{utente.credito | currency:"€ "}}</span>
+          <span ng-if="utente.credito === null">—</span>
+        </td>
       </tr>
     </tbody>
   </table>
 </div>
+
 
 
 ]]></template>

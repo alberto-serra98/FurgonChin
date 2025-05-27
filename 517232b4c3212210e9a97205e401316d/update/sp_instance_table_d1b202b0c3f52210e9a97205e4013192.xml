@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_table">
+    <sp_instance_table action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>primary</color>
+        <css/>
+        <display_field/>
+        <field_list>user_name,first_name,last_name,email,ruolo_utente,sottoruolo_operatore,credito</field_list>
+        <filter/>
+        <glyph>user</glyph>
+        <id/>
+        <maximum_entries>10</maximum_entries>
+        <order>2</order>
+        <order_by/>
+        <order_direction>asc</order_direction>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">597689aec3a12210e9a97205e401317b</sp_column>
+        <sp_page/>
+        <sp_widget display_value="Data Table from Instance Definition">38058ff1cb11020000f8d856634c9c8c</sp_widget>
+        <sys_class_name>sp_instance_table</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-26 14:06:23</sys_created_on>
+        <sys_id>d1b202b0c3f52210e9a97205e4013192</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>Lista utenti</sys_name>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_update_name>sp_instance_table_d1b202b0c3f52210e9a97205e4013192</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-26 14:23:52</sys_updated_on>
+        <table>x_1763019_furgonch_utente</table>
+        <title>Lista utenti</title>
+        <url/>
+        <widget_parameters/>
+    </sp_instance_table>
+    <sys_translated_text action="delete_multiple" query="documentkey=d1b202b0c3f52210e9a97205e4013192"/>
+</record_update>

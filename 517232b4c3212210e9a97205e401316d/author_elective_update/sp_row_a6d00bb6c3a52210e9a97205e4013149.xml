@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_row">
+    <sp_row action="DELETE">
+        <class_name/>
+        <order>6</order>
+        <semantic_tag/>
+        <sp_column/>
+        <sp_container display_value="Homepage - Container 1">234708c1c3e52210e9a97205e40131db</sp_container>
+        <sys_class_name>sp_row</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-20 13:30:03</sys_created_on>
+        <sys_id>a6d00bb6c3a52210e9a97205e4013149</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>6</sys_name>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_update_name>sp_row_a6d00bb6c3a52210e9a97205e4013149</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-26 13:55:26</sys_updated_on>
+    </sp_row>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="FurgonChin">517232b4c3212210e9a97205e401316d</application>
+        <file_path/>
+        <instance_id>fa0b529d1b3a7154c84543f4bd4bcbb3</instance_id>
+        <instance_name>dev227010</instance_name>
+        <name>sp_row_a6d00bb6c3a52210e9a97205e4013149</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_row"><sp_row action="INSERT_OR_UPDATE"><class_name/><order>6</order><semantic_tag/><sp_column/><sp_container display_value="Homepage - Container 1">234708c1c3e52210e9a97205e40131db</sp_container><sys_class_name>sp_row</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2025-05-20 13:30:03</sys_created_on><sys_id>a6d00bb6c3a52210e9a97205e4013149</sys_id><sys_mod_count>11</sys_mod_count><sys_name>6</sys_name><sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package><sys_policy/><sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope><sys_update_name>sp_row_a6d00bb6c3a52210e9a97205e4013149</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-05-26 13:55:26</sys_updated_on></sp_row></record_update>]]></payload>
+        <payload_hash>-154971167</payload_hash>
+        <record_name>6</record_name>
+        <reverted_from/>
+        <source>c07540d9c3212210e9a97205e4013105</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-26 13:55:26</sys_created_on>
+        <sys_id>4d3002b0c3f52210e9a97205e4013167</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1970ce077f20000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-26 13:55:26</sys_updated_on>
+        <type>Row</type>
+        <update_guid>813002b0def52210535aaf6d20a95667</update_guid>
+        <update_guid_history>813002b0def52210535aaf6d20a95667:-154971167,119dce3737652210ae8c7ca44dfdc91e:-314419007,b7ad146f55a12210699060c4f512222c:-154971167,faadd06f43a12210c77d88f10c528db3:4476673,2b9d906f7fa122101f6f1abe6e707d75:-154971167,469d506f67a12210c1e90ae96e07e4d0:4476673,9e7d9c2faaa1221069221d54a9ec47ca:-154971167,b2ced49ba42922106ca731c80eb012d1:4476673,8ba4149f2ae52210ea768f95c3f910b3:163924513,3a94909f6be52210d8285e543487dfc5:4476673,44749c5f03e522103369e27dbd4295b4:-154971167,e6d0437e64a522102ee07cc3255d09b8:4476673</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="6">d7128234c3f52210e9a97205e401319d</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-26 14:03:47</sys_created_on>
+        <sys_db_object display_value="" name="sp_row">sp_row</sys_db_object>
+        <sys_id>23824ff7455741d69d85dd9e24a4de64</sys_id>
+        <sys_metadata>a6d00bb6c3a52210e9a97205e4013149</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>6</sys_name>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_scope_delete display_value="">2f4d918f06694368895a1130a721eb11</sys_scope_delete>
+        <sys_update_name>sp_row_a6d00bb6c3a52210e9a97205e4013149</sys_update_name>
+        <sys_update_version display_value="sp_row_a6d00bb6c3a52210e9a97205e4013149">4d3002b0c3f52210e9a97205e4013167</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-26 14:03:47</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
