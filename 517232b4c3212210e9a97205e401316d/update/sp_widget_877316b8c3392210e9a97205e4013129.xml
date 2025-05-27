@@ -6,7 +6,13 @@
   var c = this;
 };]]></client_script>
         <controller_as>c</controller_as>
-        <css/>
+        <css>&lt;style&gt;&#13;
+  .text-center h2,&#13;
+  .text-center p {&#13;
+    display: none !important;&#13;
+  }&#13;
+&lt;/style&gt;&#13;
+</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -23,9 +29,8 @@
         <public>false</public>
         <roles/>
         <script><![CDATA[(function() {
-  // Se vuoi passare dati dinamici, li puoi definire qui.
-  data.titolo = "FurgonChin!";
-  data.descrizione = "La tua prenotazione a portata di click.";
+  data.titolo = ".";
+  data.descrizione = ".";
 })();
 ]]></script>
         <servicenow>false</servicenow>
@@ -33,14 +38,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-05-26 15:22:03</sys_created_on>
         <sys_id>877316b8c3392210e9a97205e4013129</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>Titolo con Descrizione</sys_name>
         <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
         <sys_policy/>
         <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
         <sys_update_name>sp_widget_877316b8c3392210e9a97205e4013129</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-26 15:22:03</sys_updated_on>
+        <sys_updated_on>2025-05-27 12:42:40</sys_updated_on>
         <template><![CDATA[<div class="text-center my-4">
   <h2>{{::data.titolo}}</h2>
   <p class="text-muted">{{::data.descrizione}}</p>

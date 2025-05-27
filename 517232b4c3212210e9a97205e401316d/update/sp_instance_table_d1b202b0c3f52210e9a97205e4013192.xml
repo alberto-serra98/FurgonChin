@@ -10,7 +10,7 @@
         <glyph>user</glyph>
         <id/>
         <maximum_entries>10</maximum_entries>
-        <order>2</order>
+        <order>1</order>
         <order_by/>
         <order_direction>asc</order_direction>
         <roles/>
@@ -23,14 +23,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-05-26 14:06:23</sys_created_on>
         <sys_id>d1b202b0c3f52210e9a97205e4013192</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>Lista utenti</sys_name>
         <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
         <sys_policy/>
         <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
         <sys_update_name>sp_instance_table_d1b202b0c3f52210e9a97205e4013192</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-26 14:23:52</sys_updated_on>
+        <sys_updated_on>2025-05-27 15:44:54</sys_updated_on>
         <table>x_1763019_furgonch_utente</table>
         <title>Lista utenti</title>
         <url/>

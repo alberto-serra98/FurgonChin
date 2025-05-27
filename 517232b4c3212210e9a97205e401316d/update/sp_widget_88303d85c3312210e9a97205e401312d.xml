@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>standard</category>
+        <client_script><![CDATA[api.controller = function($scope, $interval) {
+  var c = this;
+
+  c.currentIndex = 0;
+
+  c.next = function() {
+    c.currentIndex = (c.currentIndex + 1) % $scope.data.images.length;
+  };
+
+  c.prev = function() {
+    c.currentIndex = (c.currentIndex - 1 + $scope.data.images.length) % $scope.data.images.length;
+  };
+
+  // Autoplay
+  $interval(c.next, 5000);
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.carousel-container {&#13;
+  position: relative;&#13;
+  width: 100%;&#13;
+  overflow: hidden;&#13;
+  border-radius: 16px;&#13;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);&#13;
+  background-color: #f8f8f8;&#13;
+  transition: height 0.4s ease;&#13;
+}&#13;
+&#13;
+.carousel-slide {&#13;
+  width: 100%;&#13;
+  display: flex;&#13;
+  justify-content: center;&#13;
+  align-items: center;&#13;
+}&#13;
+&#13;
+.carousel-image {&#13;
+  max-width: 100%;&#13;
+  height: auto;&#13;
+  border-radius: 16px;&#13;
+  display: block;&#13;
+  transition: opacity 0.6s ease;&#13;
+}&#13;
+&#13;
+.carousel-controls {&#13;
+  position: absolute;&#13;
+  top: 50%;&#13;
+  width: 100%;&#13;
+  display: flex;&#13;
+  justify-content: space-between;&#13;
+  transform: translateY(-50%);&#13;
+  padding: 0 20px;&#13;
+  pointer-events: none;&#13;
+}&#13;
+&#13;
+.carousel-controls button {&#13;
+  background-color: rgba(0, 0, 0, 0.6);&#13;
+  color: white;&#13;
+  border: none;&#13;
+  font-size: 28px;&#13;
+  cursor: pointer;&#13;
+  pointer-events: all;&#13;
+  padding: 10px 14px;&#13;
+  border-radius: 50%;&#13;
+  transition: background-color 0.3s ease;&#13;
+}&#13;
+&#13;
+.carousel-controls button:hover {&#13;
+  background-color: rgba(0, 0, 0, 0.8);&#13;
+}&#13;
+</css>
+        <data_table>sp_instance_carousel</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>interval</field_list>
+        <has_preview>false</has_preview>
+        <id>carousel_furgonchin</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Carousel FurgonChin</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  data.images = [
+    {
+      url: '#',
+      name: 'Immagine 1',
+      background: 'https://dev227010.service-now.com/7c19318dc3312210e9a97205e40131e4.iix'
+    },
+    {
+      url: '#',
+      name: 'Immagine 2',
+      background: 'https://dev227010.service-now.com/3ec79e33c3a52210e9a97205e401318f.iix'
+    },
+    {
+      url: '#',
+      name: 'Immagine 3',
+      background: 'https://dev227010.service-now.com/ae871ebfc3652210e9a97205e40131a7.iix'
+    },
+    {
+      url: '#',
+      name: 'Immagine 4',
+      background: 'https://dev227010.service-now.com/e8379233c3a52210e9a97205e401317c.iix'
+    }
+  ];
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-27 07:23:57</sys_created_on>
+        <sys_id>88303d85c3312210e9a97205e401312d</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>Carousel FurgonChin</sys_name>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_update_name>sp_widget_88303d85c3312210e9a97205e401312d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-27 08:05:27</sys_updated_on>
+        <template><![CDATA[<div class="carousel-container">
+  <div class="carousel-slide" ng-repeat="img in data.images" ng-show="$index === c.currentIndex">
+    <a ng-href="{{img.url}}" title="Apri: {{img.name}}">
+      <img ng-src="{{img.background}}" class="carousel-image" alt="{{img.name}}">
+    </a>
+  </div>
+
+  <div class="carousel-controls">
+    <button ng-click="c.prev()">⟨</button>
+    <button ng-click="c.next()">⟩</button>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>88303d85c3312210e9a97205e401312d</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-27 07:27:30</sys_created_on>
+        <sys_id>0c01f109c3312210e9a97205e40131d9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-27 07:27:30</sys_updated_on>
+        <table>sp_widget</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

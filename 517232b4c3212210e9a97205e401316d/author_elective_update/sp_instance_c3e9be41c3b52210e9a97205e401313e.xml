@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="DELETE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">dcf4def8c3392210e9a97205e40131ec</sp_column>
+        <sp_widget display_value="Barcode">12b8f3d3d7033100a9ad1e173e24d406</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-27 12:46:06</sys_created_on>
+        <sys_id>c3e9be41c3b52210e9a97205e401313e</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_update_name>sp_instance_c3e9be41c3b52210e9a97205e401313e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-27 12:46:31</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance>
+    <sys_translated_text action="DELETE" query="documentkey=c3e9be41c3b52210e9a97205e401313e"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="FurgonChin">517232b4c3212210e9a97205e401316d</application>
+        <file_path/>
+        <instance_id>fa0b529d1b3a7154c84543f4bd4bcbb3</instance_id>
+        <instance_name>dev227010</instance_name>
+        <name>sp_instance_c3e9be41c3b52210e9a97205e401313e</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance"><sp_instance action="INSERT_OR_UPDATE"><active>true</active><class_name/><color>default</color><css/><glyph/><id/><order>1</order><roles/><short_description/><size>md</size><sp_column display_value="1">dcf4def8c3392210e9a97205e40131ec</sp_column><sp_widget display_value="Barcode">12b8f3d3d7033100a9ad1e173e24d406</sp_widget><sys_class_name>sp_instance</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2025-05-27 12:46:06</sys_created_on><sys_id>c3e9be41c3b52210e9a97205e401313e</sys_id><sys_mod_count>2</sys_mod_count><sys_name/><sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package><sys_policy/><sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope><sys_update_name>sp_instance_c3e9be41c3b52210e9a97205e401313e</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-05-27 12:46:31</sys_updated_on><title/><url/><widget_parameters/></sp_instance><sys_translated_text action="delete_multiple" query="documentkey=c3e9be41c3b52210e9a97205e401313e"/></record_update>]]></payload>
+        <payload_hash>1833421891</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>c07540d9c3212210e9a97205e4013105</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-27 12:46:31</sys_created_on>
+        <sys_id>490a7681c3b52210e9a97205e4013184</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19711c7b92f0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-27 12:46:31</sys_updated_on>
+        <type>Instance</type>
+        <update_guid>cd0a7681d5b52210acb0062951387783</update_guid>
+        <update_guid_history>cd0a7681d5b52210acb0062951387783:1833421891,52f9368132b52210980f5febc2c56f66:587513954,47e9f281c8b5221066accb7939e0d828:1833421891</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">1e0ab681c3b52210e9a97205e401312c</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-27 12:46:35</sys_created_on>
+        <sys_db_object display_value="" name="sp_instance">sp_instance</sys_db_object>
+        <sys_id>b4fd3260bcbc4fc682c182067e2be4e4</sys_id>
+        <sys_metadata>c3e9be41c3b52210e9a97205e401313e</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
+        <sys_scope_delete display_value="">2f4d918f06694368895a1130a721eb11</sys_scope_delete>
+        <sys_update_name>sp_instance_c3e9be41c3b52210e9a97205e401313e</sys_update_name>
+        <sys_update_version display_value="sp_instance_c3e9be41c3b52210e9a97205e401313e">490a7681c3b52210e9a97205e4013184</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-27 12:46:35</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

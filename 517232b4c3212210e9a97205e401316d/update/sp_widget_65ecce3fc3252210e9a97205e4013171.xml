@@ -1,46 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller = function() {
+        <client_script><![CDATA[api.controller = function($scope, $interval) {
   var c = this;
+
+  c.slides = $scope.data.slides;
   c.currentIndex = 0;
 
+  c.setActive = function(index) {
+    c.slides.forEach(function(slide, i) {
+      slide.active = (i === index);
+    });
+    c.currentIndex = index;
+  };
+
   c.next = function() {
-    c.currentIndex = (c.currentIndex + 1) % c.data.images.length;
+    var nextIndex = (c.currentIndex + 1) % c.slides.length;
+    c.setActive(nextIndex);
   };
 
-  c.prev = function() {
-    c.currentIndex = (c.currentIndex - 1 + c.data.images.length) % c.data.images.length;
-  };
+  // Inizializza il primo slide come attivo
+  c.setActive(0);
 
-  setInterval(function() {
+  // Cambia slide ogni 5 secondi
+  $interval(function() {
     c.next();
   }, 5000);
-};]]></client_script>
+};
+]]></client_script>
         <controller_as>c</controller_as>
-        <css>.carousel-container {&#13;
+        <css>.carousel-fullscreen {&#13;
+  width: 100vw;&#13;
+  margin-left: calc(-50vw + 50%);&#13;
   position: relative;&#13;
-  height: 350px;&#13;
-  overflow: hidden;&#13;
-  border-radius: 10px;&#13;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);&#13;
+  background: #fff; /* sfondo bianco */&#13;
+  text-align: center;&#13;
+  padding: 20px 0; /* spazio sopra/sotto */&#13;
 }&#13;
 &#13;
-.carousel-image {&#13;
-  width: 100%;&#13;
-  height: 100%;&#13;
-  object-fit: cover;&#13;
-  transition: opacity 1s ease-in-out;&#13;
+.carousel-fullscreen img {&#13;
+  width: auto;&#13;
+  max-width: 100%;&#13;
+  max-height: 400px; /* più piccolo in altezza */&#13;
+  object-fit: contain;&#13;
+  display: block;&#13;
+  margin: 0 auto;&#13;
+  background-color: white;&#13;
 }&#13;
 &#13;
-.carousel-controls {&#13;
-  position: absolute;&#13;
-  top: 50%;&#13;
-  width: 100%;&#13;
-  transform: translateY(-50%);&#13;
-  display: flex;&#13;
-  justify-content: space-between;&#13;
-  padding: 0 15px;&#13;
+@media (max-width: 768px) {&#13;
+  .carousel-fullscreen img {&#13;
+    max-height: 180px;&#13;
+  }&#13;
 }&#13;
 </css>
         <data_table>sp_instance</data_table>
@@ -59,12 +70,37 @@
         <public>true</public>
         <roles/>
         <script><![CDATA[(function() {
-  data.images = [
-    'https://dev227010.service-now.com/14c81e73c3a52210e9a97205e4013165.iix',
-    'https://dev227010.service-now.com/3ec79e33c3a52210e9a97205e401318f.iix',
-    'https://dev227010.service-now.com/ae871ebfc3652210e9a97205e40131a7.iix',
-    'https://dev227010.service-now.com/e8379233c3a52210e9a97205e401317c.iix'
+  data.slides = [
+    {
+      name: "X family",
+      url: "#",
+      background: "https://dev227010.service-now.com/630e864dc3b12210e9a97205e401316d.iix",
+      active: true  // ATTIVO il primo slide
+    },
+    {
+      name: "Sportiva",
+      url: "#",
+      background: "https://dev227010.service-now.com/01469ac5c3f12210e9a97205e4013105.iix", 
+      active: false
+    },
+    {
+      name: "Eco",
+      url: "#",
+      background: "https://dev227010.service-now.com/15af4acdc3b12210e9a97205e40131d8.iix", 
+      active: false
+    },
+    {
+      name: "Citycar",
+      url: "#",
+      background: "https://dev227010.service-now.com/aee51245c3f12210e9a97205e40131ec.iix", 
+      active: false
+    }
   ];
+
+  // Definisci l'intervallo di scorrimento (5 secondi)
+  data.options = {
+    interval: 5000
+  };
 })();
 ]]></script>
         <servicenow>false</servicenow>
@@ -72,21 +108,22 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-05-23 12:19:09</sys_created_on>
         <sys_id>65ecce3fc3252210e9a97205e4013171</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>37</sys_mod_count>
         <sys_name>carosello immagini</sys_name>
         <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
         <sys_policy/>
         <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
         <sys_update_name>sp_widget_65ecce3fc3252210e9a97205e4013171</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-26 10:49:35</sys_updated_on>
-        <template><![CDATA[<div class="carousel-container text-center">
-  <img ng-src="{{c.data.images[c.currentIndex]}}" class="carousel-image" alt="carosello" />
-
-  <div class="carousel-controls">
-    <button class="btn btn-light me-2" ng-click="c.prev()">‹</button>
-    <button class="btn btn-light" ng-click="c.next()">›</button>
-  </div>
+        <sys_updated_on>2025-05-27 16:59:01</sys_updated_on>
+        <template><![CDATA[<div class="carousel-fullscreen">
+  <uib-carousel no-wrap="false" interval="5000">
+    <uib-slide ng-repeat="slide in c.slides" active="slide.active">
+      <a href="{{::slide.url}}" title="${Open carousel item}: {{::slide.name}}">
+        <img ng-src="{{::slide.background}}" role="presentation" alt="{{::slide.name}}">
+      </a>
+    </uib-slide>
+  </uib-carousel>
 </div>
 ]]></template>
     </sp_widget>
