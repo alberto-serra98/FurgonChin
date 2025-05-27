@@ -4,13 +4,13 @@
             <element>first_name</element>
             <position>0</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2025-05-27 08:38:48</sys_created_on>
-            <sys_id>a051828dc3712210e9a97205e401314a</sys_id>
+            <sys_created_on>2025-05-27 22:48:02</sys_created_on>
+            <sys_id>ecb3c559c3316210e9a97205e4013181</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1763019_furgonch_utente" sys_domain="global" view="ec2daaf9d7523100a9ad1e173e24d4ea">706d8ab0c3392210e9a97205e4013119</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2025-05-27 08:38:48</sys_updated_on>
+            <sys_updated_on>2025-05-27 22:48:02</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -18,13 +18,13 @@
             <element>last_name</element>
             <position>1</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2025-05-27 08:38:48</sys_created_on>
-            <sys_id>2051828dc3712210e9a97205e401314b</sys_id>
+            <sys_created_on>2025-05-27 22:48:02</sys_created_on>
+            <sys_id>2cb3c559c3316210e9a97205e4013182</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1763019_furgonch_utente" sys_domain="global" view="ec2daaf9d7523100a9ad1e173e24d4ea">706d8ab0c3392210e9a97205e4013119</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2025-05-27 08:38:48</sys_updated_on>
+            <sys_updated_on>2025-05-27 22:48:02</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -32,13 +32,13 @@
             <element>email</element>
             <position>2</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2025-05-27 08:38:48</sys_created_on>
-            <sys_id>2851828dc3712210e9a97205e401314b</sys_id>
+            <sys_created_on>2025-05-27 22:48:02</sys_created_on>
+            <sys_id>24b3c559c3316210e9a97205e4013183</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1763019_furgonch_utente" sys_domain="global" view="ec2daaf9d7523100a9ad1e173e24d4ea">706d8ab0c3392210e9a97205e4013119</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2025-05-27 08:38:48</sys_updated_on>
+            <sys_updated_on>2025-05-27 22:48:02</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
@@ -46,57 +46,71 @@
             <element>user_name</element>
             <position>3</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2025-05-27 08:38:48</sys_created_on>
-            <sys_id>2051828dc3712210e9a97205e401314c</sys_id>
+            <sys_created_on>2025-05-27 22:48:02</sys_created_on>
+            <sys_id>2cb3c559c3316210e9a97205e4013183</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1763019_furgonch_utente" sys_domain="global" view="ec2daaf9d7523100a9ad1e173e24d4ea">706d8ab0c3392210e9a97205e4013119</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2025-05-27 08:38:48</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>ruolo_utente</element>
-            <position>4</position>
-            <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2025-05-27 08:38:48</sys_created_on>
-            <sys_id>2851828dc3712210e9a97205e401314c</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_1763019_furgonch_utente" sys_domain="global" view="ec2daaf9d7523100a9ad1e173e24d4ea">706d8ab0c3392210e9a97205e4013119</sys_ui_section>
-            <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2025-05-27 08:38:48</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>sottoruolo_operatore</element>
-            <position>5</position>
-            <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2025-05-27 08:38:48</sys_created_on>
-            <sys_id>2051828dc3712210e9a97205e401314d</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_1763019_furgonch_utente" sys_domain="global" view="ec2daaf9d7523100a9ad1e173e24d4ea">706d8ab0c3392210e9a97205e4013119</sys_ui_section>
-            <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2025-05-27 08:38:48</sys_updated_on>
+            <sys_updated_on>2025-05-27 22:48:02</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.split</element>
-            <position>6</position>
+            <position>4</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2025-05-27 08:38:48</sys_created_on>
-            <sys_id>2851828dc3712210e9a97205e401314d</sys_id>
+            <sys_created_on>2025-05-27 22:48:02</sys_created_on>
+            <sys_id>24b3c559c3316210e9a97205e4013184</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1763019_furgonch_utente" sys_domain="global" view="ec2daaf9d7523100a9ad1e173e24d4ea">706d8ab0c3392210e9a97205e4013119</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2025-05-27 08:38:48</sys_updated_on>
+            <sys_updated_on>2025-05-27 22:48:02</sys_updated_on>
             <sys_user/>
             <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>ruolo_utente</element>
+            <position>5</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-05-27 22:48:02</sys_created_on>
+            <sys_id>2cb3c559c3316210e9a97205e4013184</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_1763019_furgonch_utente" sys_domain="global" view="ec2daaf9d7523100a9ad1e173e24d4ea">706d8ab0c3392210e9a97205e4013119</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-05-27 22:48:02</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>sottoruolo_operatore</element>
+            <position>6</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-05-27 22:48:02</sys_created_on>
+            <sys_id>24b3c559c3316210e9a97205e4013185</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_1763019_furgonch_utente" sys_domain="global" view="ec2daaf9d7523100a9ad1e173e24d4ea">706d8ab0c3392210e9a97205e4013119</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-05-27 22:48:02</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>credito</element>
+            <position>7</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-05-27 22:48:02</sys_created_on>
+            <sys_id>2cb3c559c3316210e9a97205e4013185</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_1763019_furgonch_utente" sys_domain="global" view="ec2daaf9d7523100a9ad1e173e24d4ea">706d8ab0c3392210e9a97205e4013119</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-05-27 22:48:02</sys_updated_on>
+            <sys_user/>
+            <type/>
         </sys_ui_element>
         <sys_ui_section action="INSERT_OR_UPDATE">
             <caption/>

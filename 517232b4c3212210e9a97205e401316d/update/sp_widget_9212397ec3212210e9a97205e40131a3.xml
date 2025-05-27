@@ -10,20 +10,21 @@
   margin-top: 20px;&#13;
   padding: 10px;&#13;
   border-radius: 8px;&#13;
+  /* background trasparente (default) */&#13;
 }&#13;
 &#13;
-.user-icon {&#13;
-  color:  white;&#13;
+.user-card .user-icon {&#13;
+  color: white !important;&#13;
   margin-right: 15px;&#13;
 }&#13;
 &#13;
-.media-heading {&#13;
+.user-card .media-heading {&#13;
+  color: white !important;&#13;
   font-size: 18px;&#13;
   margin-bottom: 10px;&#13;
-  color: white; /* Nome cliente bianco */&#13;
 }&#13;
 &#13;
-.label {&#13;
+.user-card .label {&#13;
   font-size: 13px;&#13;
   padding: 5px 10px;&#13;
   border-radius: 12px;&#13;
@@ -79,18 +80,18 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-05-20 07:50:03</sys_created_on>
         <sys_id>9212397ec3212210e9a97205e40131a3</sys_id>
-        <sys_mod_count>22</sys_mod_count>
+        <sys_mod_count>27</sys_mod_count>
         <sys_name>Credito Utente</sys_name>
         <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
         <sys_policy/>
         <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
         <sys_update_name>sp_widget_9212397ec3212210e9a97205e40131a3</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-27 17:10:07</sys_updated_on>
+        <sys_updated_on>2025-05-27 23:51:38</sys_updated_on>
         <template><![CDATA[<div class="user-card" ng-if="data.isCliente">
   <div class="media">
     <div class="media-left">
-      <i class="fa fa-user user-icon fa-2x"></i>
+       <i class="fa fa-user-circle fa-3x user-icon"></i>
     </div>
     <div class="media-body">
       <h4 class="media-heading">{{ data.nomeCompleto }}</h4>

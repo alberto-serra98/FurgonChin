@@ -51,7 +51,7 @@
         <public>false</public>
         <roles/>
         <script><![CDATA[(function() {
-  data.bgImage = 'https://dev227010.service-now.com/ff97e789c3792210e9a97205e40131c1.iix'; // Cambia con il tuo URL
+  data.bgImage = 'https://dev227010.service-now.com/67afb8d1c3316210e9a97205e401310d.iix'; 
 })();
 ]]></script>
         <servicenow>false</servicenow>
@@ -59,14 +59,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-05-27 14:29:38</sys_created_on>
         <sys_id>7e6157cdc3f52210e9a97205e4013189</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Background image</sys_name>
         <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
         <sys_policy/>
         <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
         <sys_update_name>sp_widget_7e6157cdc3f52210e9a97205e4013189</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-27 16:07:47</sys_updated_on>
+        <sys_updated_on>2025-05-27 22:32:00</sys_updated_on>
         <template><![CDATA[<div class="full-image-container">
   <img ng-src="{{::data.bgImage}}" alt="Background" class="responsive-image" />
 </div>

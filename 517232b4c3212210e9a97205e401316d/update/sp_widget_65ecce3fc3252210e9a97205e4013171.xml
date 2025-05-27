@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller = function($scope, $interval) {
+        <client_script><![CDATA[api.controller = function($scope, $timeout) {
   var c = this;
 
   c.slides = $scope.data.slides;
   c.currentIndex = 0;
 
+  var changing = false;
+
   c.setActive = function(index) {
+    if (changing) return;
+    changing = true;
+
     c.slides.forEach(function(slide, i) {
       slide.active = (i === index);
     });
     c.currentIndex = index;
+
+    $timeout(function() {
+      changing = false;
+    }, 400);
   };
 
-  c.next = function() {
-    var nextIndex = (c.currentIndex + 1) % c.slides.length;
-    c.setActive(nextIndex);
-  };
-
-  // Inizializza il primo slide come attivo
   c.setActive(0);
-
-  // Cambia slide ogni 5 secondi
-  $interval(function() {
-    c.next();
-  }, 5000);
 };
 ]]></client_script>
         <controller_as>c</controller_as>
@@ -48,12 +46,31 @@
   background-color: white;&#13;
 }&#13;
 &#13;
+/* Responsive: al di sotto di 768px */&#13;
 @media (max-width: 768px) {&#13;
   .carousel-fullscreen img {&#13;
     max-height: 180px;&#13;
   }&#13;
 }&#13;
-</css>
+&#13;
+/* ✅ Indicatori del carosello */&#13;
+.carousel-indicators li {&#13;
+  background-color: white;      /* cerchietti bianchi */&#13;
+  border: 1px solid #000;       /* bordo nero per visibilità */&#13;
+}&#13;
+&#13;
+.carousel-indicators .active {&#13;
+  background-color: black;      /* cerchietto attivo nero */&#13;
+}&#13;
+&#13;
+.toggle-animation {&#13;
+  display: none !important;&#13;
+}&#13;
+&#13;
+.carousel-fullscreen a[href="#"] {&#13;
+  cursor: default;&#13;
+  pointer-events: none; /* Disattiva anche il click */&#13;
+}</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -108,16 +125,16 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-05-23 12:19:09</sys_created_on>
         <sys_id>65ecce3fc3252210e9a97205e4013171</sys_id>
-        <sys_mod_count>37</sys_mod_count>
+        <sys_mod_count>47</sys_mod_count>
         <sys_name>carosello immagini</sys_name>
         <sys_package display_value="FurgonChin" source="x_1763019_furgonch">517232b4c3212210e9a97205e401316d</sys_package>
         <sys_policy/>
         <sys_scope display_value="FurgonChin">517232b4c3212210e9a97205e401316d</sys_scope>
         <sys_update_name>sp_widget_65ecce3fc3252210e9a97205e4013171</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-27 16:59:01</sys_updated_on>
+        <sys_updated_on>2025-05-27 23:22:48</sys_updated_on>
         <template><![CDATA[<div class="carousel-fullscreen">
-  <uib-carousel no-wrap="false" interval="5000">
+  <uib-carousel interval="5000" no-wrap="false">
     <uib-slide ng-repeat="slide in c.slides" active="slide.active">
       <a href="{{::slide.url}}" title="${Open carousel item}: {{::slide.name}}">
         <img ng-src="{{::slide.background}}" role="presentation" alt="{{::slide.name}}">
